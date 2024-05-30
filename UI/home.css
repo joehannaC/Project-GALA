@@ -211,14 +211,8 @@ footer {
 .footer-logo {
     width: 150px;
     height: 150px;
-    margin-left: -250px; 
-    margin-top: 60px; 
-}
-
-.footer-description {
-    flex: 1;
-    text-align: left;
-    margin-right: 20px;
+    margin-left:-200px; 
+    margin-top: 30px; 
 }
 
 .footer-links {
@@ -255,45 +249,15 @@ footer {
     text-decoration: underline;
 }
 
-.social-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-icons a img {
-    width: 30px;
-    height: 30px;
-}
-
 .footer-bottom {
     width: 100%;
     text-align: left;
     padding-left: 20px;
 }
 
-footer p {
-    margin: 0;
-}
-
-.footer-description {
-    flex: 1;
-    text-align: left;
-    margin-right: 20px;
-    margin-top: 20px;
-    font-size: 16px; 
-    line-height: 1.5; 
-    color: #333; 
-    padding: 10px 0; 
-}
-
-.about-us-section {
-    flex: 1;
-    margin-left: 0;
-}
-
 .contact-section {
     flex: 1;
-    margin-left: 20px;
+    margin-left: 200px;
 }
 
 nav ul li a {
@@ -319,25 +283,13 @@ nav ul li a {
     text-decoration: none; 
 }
 
-.follow-connect {
-    text-align: right; 
-    flex: 1; 
-    margin-left: 20px;
-}
-
 .social-icons {
     display: flex;
     gap: 10px;
     justify-content: flex-start; 
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
-.social-icons a img {
-    width: 30px;
-    height: 30px;
-}
-
-/* Media Queries for responsiveness */
 @media (max-width: 1200px) {
     .footer-content {
         flex-direction: column;
@@ -347,10 +299,7 @@ nav ul li a {
     .footer-description, .about-us-section, .contact-section, .follow-connect {
         margin: 10px 0;
         text-align: center;
-    }
-
-    .footer-logo {
-        margin: 10px auto;
+        margin: 10px;
     }
 
     .slideshow-container {
@@ -415,7 +364,6 @@ nav ul li a {
     }
 }
 
-
 footer p {
     margin: 0;
 }
@@ -423,7 +371,7 @@ footer p {
 .footer-description {
     flex: 1;
     text-align: left;
-    margin-right: 300px;
+    margin-left: 20px; 
     margin-top: 40px;
     font-size: 16px; 
     line-height: 1.5; 
@@ -433,25 +381,17 @@ footer p {
 
 .about-us-section {
     flex: 1;
-    margin-left: -50px;
+    margin-left: 150px;
 }
 
 .contact-section {
     flex: 1;
-    margin-left: 45px;
-}
-
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-weight: bold; 
+    margin-left: 80px;
 }
 
 .contact-section p {
     margin-top: 10px; 
+    white-space: nowrap;
 }
 
 .contact-section p strong,
@@ -465,22 +405,12 @@ nav ul li a {
 }
 
 .follow-connect {
-    text-align: right; 
+    text-align: left; 
     flex: 1; 
-    margin-left: 80px;
+    margin-right: 70px; 
 }
-
-.social-icons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start; 
-    margin-left: 60px;
-}
-
 
 .social-icons a img {
     width: 30px;
     height: 30px;
 }
-
-
