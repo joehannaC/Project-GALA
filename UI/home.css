@@ -225,6 +225,8 @@ footer {
 .footer-links div {
     margin-right: 40px;
     text-align: left;
+    flex: 1;
+    max-width: 300px;
 }
 
 .footer-links h3 {
@@ -382,13 +384,14 @@ footer p {
 .about-us-section {
     flex: 1;
     margin-left: 150px;
+    margin-top: 10px;
 }
 
 .contact-section {
     flex: 1;
     margin-left: 80px;
     text-align: left;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .contact-section h3 {
