@@ -15,7 +15,7 @@ body {
     justify-content: flex-end; 
     align-items: center;
     width: 100%;
-    height: 100%;
+    position: relative; 
 }
 
 .login-box {
@@ -26,7 +26,7 @@ body {
     text-align: center;
     max-width: 400px;
     width: 100%;
-    margin-right: 150px; 
+    margin-right:100px; 
 }
 
 .login-header {
@@ -168,9 +168,6 @@ button:hover {
     height: auto;
 }
 
-.login-container {
-    position: relative; 
-}
 
 .footer {
     margin-top: 20px; 
@@ -185,18 +182,6 @@ button:hover {
     font-size: 16px;
     color: #ffffff;
     margin-bottom: 15px;
-}
-
-.login-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-box {
-    max-width: 400px;
-    margin-right: 150px;
 }
 
 @media screen and (max-width: 768px) {
