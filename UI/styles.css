@@ -187,3 +187,56 @@ button:hover {
     color: #ffffff;
     margin-bottom: 15px;
 }
+
+.login-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    max-width: 400px;
+    margin-right: 150px;
+}
+
+@media screen and (max-width: 768px) {
+    .login-container {
+        justify-content: center;
+    }
+
+    .login-box {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .login-box {
+        width: 90%;
+        margin-right: 0;
+        border-radius: 0;
+    }
+
+    .person-icon {
+        width: 100px;
+        height: 100px;
+        margin-top: -80px;
+    }
+
+    .login-header h2 {
+        font-size: 30px;
+    }
+
+    .login-header p {
+        font-size: 16px;
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        width: 100%;
+    }
+}
