@@ -176,12 +176,11 @@ button:hover {
 
 .copyright {
     position: absolute;
-    bottom: 10px; 
+    bottom: -150px; 
     left: 50%;
     transform: translateX(-50%);
     font-size: 16px;
     color: #ffffff;
-    margin-bottom: 15px;
 }
 
 @media screen and (max-width: 768px) {
