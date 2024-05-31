@@ -42,7 +42,22 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 20px; 
+    margin: 0 20px;
+}
+
+nav ul li a[data-arrow]::after {
+    content: 'ᐳ'; 
+    display: inline-block;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    font-size: 10px; 
+    position: relative; 
+    top: -2px;
+}
+
+
+nav ul li a[data-arrow]:hover::after {
+    transform: rotate(90deg);
 }
 
 nav ul li a {
@@ -183,7 +198,7 @@ nav ul li.logout {
     position: absolute;
     background-color: #365899;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
     z-index: 1;
     margin-left: -30px;
 }
@@ -423,88 +438,3 @@ footer p {
     height: 30px;
 }
 
-.chatbot-container {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 300px;
-}
-
-#chatbot {
-    display: none;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.chatbot-header {
-    background-color: #22529b;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chatbot-header h4 {
-    margin: 0;
-    margin-left: 10px;
-}
-
-.chatbot-body {
-    padding: 10px;
-    height: 200px;
-    overflow-y: auto;
-}
-
-.chatbot-message {
-    background-color: rgba(81, 188, 255, 0.5);
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px 0;
-}
-
-.chatbot-footer {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-}
-
-.chatbot-footer input {
-    flex: 1;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.chatbot-footer button {
-    padding: 5px 10px;
-    margin-left: 5px;
-    background-color: #22529b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#open-chatbot {
-    padding: 10px 20px;
-    background-color: #22529b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#open-chatbot:hover {
-    background-color: #1a407f;
-}
-
-#close-chatbot {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}

@@ -45,6 +45,21 @@ nav ul li {
     margin: 0 20px; 
 }
 
+nav ul li a[data-arrow]::after {
+    content: 'ᐳ'; 
+    display: inline-block;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    font-size: 10px; 
+    position: relative; 
+    top: -2px;
+}
+
+
+nav ul li a[data-arrow]:hover::after {
+    transform: rotate(90deg);
+}
+
 nav ul li a {
     display: block;
     color: white;
