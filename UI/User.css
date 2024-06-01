@@ -4,7 +4,10 @@ body {
     padding: 0;
     background-color: #b6d1fa;
 }
-
+.spacer-container {
+    height: 500px; 
+    width: 100%;
+}
 header {
     background-color: #22529b;
     color: white;
@@ -437,4 +440,6 @@ footer p {
     width: 30px;
     height: 30px;
 }
+
+
 
