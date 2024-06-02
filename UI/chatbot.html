@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Page</title>
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+    <header>
+        <img src="../UI/images/gala-logo.png" alt="Gala Logo" class="logo">
+        <h1>CHATBOT</h1>
+    </header>    
+    
+    <div class="container">
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box">
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        <div class="admin-container">
+            <h2>Add your Questions and Answers!</h2>
+            <div class="input-group">
+                <label for="question">Question:</label>
+                <input type="text" id="question" placeholder="Enter question">
+            </div>
+            <div class="input-group">
+                <label for="answer">Answer:</label>
+                <input type="text" id="answer" placeholder="Enter answer">
+            </div>
+            <button onclick="addQA()">Add Q&A</button>
+            <h3>Current Q&A:</h3>
+            <div id="qa-list">
+                <table id="qa-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="chatbot.js"></script>
+</body>
+</html>
