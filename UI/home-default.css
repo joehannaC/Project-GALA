@@ -442,3 +442,239 @@ footer p {
     width: 30px;
     height: 30px;
 }
+
+nav ul li.login .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #365899;
+    min-width: 400px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1;
+    padding: 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out; 
+    right:0;
+}
+
+nav ul li.login .dropdown-content form {
+    display: none;
+    flex-direction: column;
+}
+
+nav ul li.login .dropdown-content form.active-form {
+    display: flex;
+}
+
+nav ul li.login .login-container, .register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav ul li.login .switch-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+nav ul li.login .switch {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    background-color: #4a82d8;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+nav ul li.login .switch button {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+    z-index: 1; 
+}
+
+nav ul li.login .switch button.active-btn {
+    color: white;
+}
+
+nav ul li.login .switch button:not(.active-btn) {
+    color: black;
+}
+
+nav ul li.login .switch .slider {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #365899;
+    border-radius: 25px;
+    transition: transform 0.3s;
+    z-index: 0; 
+}
+
+nav ul li.login .switch button:hover {
+    background-color: transparent;
+}
+
+nav ul li.login label {
+    align-self: flex-start;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+nav ul li.login .input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+nav ul li.login .input-container input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+nav ul li.login .input-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+nav ul li.login .remember-forgot-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+nav ul li.login .remember-container {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li.login .forgot-password a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+nav ul li.login .forgot-password a:hover {
+    text-decoration: underline;
+}
+
+nav ul li.login .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4a82d8;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 15px; 
+}
+
+nav ul li.login .submit-btn:hover {
+    background-color: #365899;
+}
+
+nav ul li.login .register-fields {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav ul li.login .register-fields label,
+nav ul li.login .register-fields input {
+    width: 22%;
+}
+
+nav ul li.login .register-fields input {
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+nav ul li.dropdown.login:hover .dropdown-content {
+    display: block;
+}
+
+nav ul li.dropdown.login:hover .dropdown-content {
+    display: block;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto; 
+    margin: auto; 
+    border-radius: 20px;
+}
+
+.register-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%; 
+    margin-right: 1%;
+}
+
+.input-group.small-input {
+    width: 7%;
+    margin-right: 1%;
+}
+
+.input-group.full-width {
+    width: 100%;
+    margin-right: 1%;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #4a82d8;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+    background-color: #365899;
+}
+
