@@ -4,10 +4,12 @@ body {
     padding: 0;
     background-color: #b6d1fa;
 }
+
 .spacer-container {
     height: 500px; 
     width: 100%;
 }
+
 header {
     background-color: #22529b;
     color: white;
@@ -58,7 +60,6 @@ nav ul li a[data-arrow]::after {
     top: -2px;
 }
 
-
 nav ul li a[data-arrow]:hover::after {
     transform: rotate(90deg);
 }
@@ -85,49 +86,8 @@ nav ul li.logout {
     margin-left: auto; 
 }
 
-.slideshow-container {
-    position: relative;
-    margin: auto;
-    width: 100%; 
-    max-width: 1860px; 
-    height: auto; 
-    overflow: hidden; 
-}
-
-.mySlides img {
-    width: 100%; 
-    height: auto;
-}
-
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 5.0s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
-}
-
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
@@ -158,6 +118,7 @@ nav ul li.logout {
     font-size: 12px;
     position: relative;
 }
+
 .dropdown-content a::after {
     content: '';
     position: absolute;
@@ -461,5 +422,106 @@ footer p {
     height: 30px;
 }
 
+.container {
+    display: flex;
+    height: 100vh;
+}
 
+.sidebar {
+    width: 20%;
+    background-color: #9ec6f8;
+    padding: 20px;
+    text-align: center;
+}
 
+.profile-pic img {
+    width: 80%;
+    border-radius: 50%;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-item:hover {
+    background-color: #86b3ea;
+    border-radius: 5px;
+}
+
+.main-content {
+    width: 80%;
+    padding: 20px;
+    background-color: #B6D1FA;
+}
+
+.profile-header {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.profile-header h1,
+.profile-header p {
+    color: white;
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tab:hover {
+    background-color: #86b3ea;
+}
+
+.tab.active {
+    border-bottom: 3px solid white;
+}
+
+.tab-line {
+    border-bottom: 3px solid white;
+    width: 70%;
+    margin-top: -3px;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.section h2 {
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 2px solid white;
+    padding: 10px;
+    text-align: left;
+    width: 25%; 
+}
+
+th {
+    background-color: #4a82d8; 
+    color: white;
+}
