@@ -1,13 +1,92 @@
-body {
-    font-family: Arial, sans-serif;
+
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #b6d1fa;
 }
 
-.spacer-container {
-    height: 500px; 
-    width: 100%;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #9ec6f8;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.main-content {
+    width: 80%;
+    padding: 20px;
+    background-color: #B6D1FA;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+footer {
+    background-color: #d8e7ff;
+    border-top: 10px solid #184d9d;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+    margin-top: auto;
+}
+
+.details-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-wrap: wrap; 
+    margin-bottom: 20px; 
+}
+
+.details-labels, .details-info {
+    padding: 10px;
+    flex: 1;
+}
+
+.details-info {
+    position: relative;
+}
+
+.details-info::before {
+    content: ""; 
+    position: absolute;
+    left: -10px;
+    top: 0;
+    bottom: 0; 
+    width: 2px; 
+    background-color: white;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    background-color: #86b3ea;
+}
+
+.tab-button.active {
+    background-color: #365899; 
+    border-bottom: 3px solid white; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #b6d1fa;
 }
 
 header {
@@ -20,14 +99,14 @@ header {
 }
 
 .logo {
-    height: 80px; 
-    width: auto; 
-    margin-left: 20px; 
+    height: 80px;
+    width: auto;
+    margin-left: 20px;
 }
 
 #datetime {
     font-size: 18px;
-    color: white; 
+    color: white;
     margin-right: 20px;
     margin-top: 30px;
 }
@@ -43,25 +122,11 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 nav ul li {
     margin: 0 20px;
-}
-
-nav ul li a[data-arrow]::after {
-    content: 'ᐳ'; 
-    display: inline-block;
-    margin-left: 10px;
-    transition: transform 0.3s ease;
-    font-size: 10px; 
-    position: relative; 
-    top: -2px;
-}
-
-nav ul li a[data-arrow]:hover::after {
-    transform: rotate(90deg);
 }
 
 nav ul li a {
@@ -79,25 +144,25 @@ nav ul li a:hover {
 }
 
 nav ul li.about-us {
-    margin-right: auto; 
+    margin-right: auto;
 }
 
 nav ul li.logout {
-    margin-left: auto; 
+    margin-left: auto;
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from { opacity: .4; }
+    to { opacity: 1; }
 }
 
 @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from { opacity: .4; }
+    to { opacity: 1; }
 }
 
 .dropdown-content {
@@ -105,7 +170,7 @@ nav ul li.logout {
     position: absolute;
     background-color: #365899;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
     margin-left: -25px;
 }
@@ -152,7 +217,7 @@ nav ul li.logout {
     position: absolute;
     background-color: #365899;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
     margin-left: 50px;
 }
@@ -162,7 +227,7 @@ nav ul li.logout {
     position: absolute;
     background-color: #365899;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
     margin-left: -25px;
 }
@@ -172,7 +237,7 @@ nav ul li.logout {
     position: absolute;
     background-color: #365899;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
     margin-left: -2px;
 }
@@ -182,20 +247,9 @@ nav ul li.logout {
     position: absolute;
     background-color: #365899;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
     margin-left: -30px;
-}
-
-footer {
-    background-color: #d8e7ff;
-    border-top: 10px solid #184d9d;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #333;
 }
 
 .footer-content {
@@ -204,21 +258,21 @@ footer {
     width: 100%;
     max-width: 1200px;
     margin-bottom: 20px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .footer-logo {
     width: 150px;
     height: 150px;
-    margin-left:-100px; 
-    margin-top: 30px; 
+    margin-left: -100px;
+    margin-top: 30px;
 }
 
 .footer-links {
     display: flex;
     justify-content: space-between;
     flex: 5;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .footer-links div {
@@ -261,33 +315,24 @@ footer {
     margin-left: 200px;
 }
 
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-weight: bold; 
-}
-
 .contact-section p {
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 .contact-section p strong,
 .contact-section p a {
-    color: #333; 
+    color: #333;
     text-decoration: none;
 }
 
 .contact-section p a:hover {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .social-icons {
     display: flex;
     gap: 10px;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     margin-left: 50px;
 }
 
@@ -297,7 +342,10 @@ nav ul li a {
         align-items: center;
     }
 
-    .footer-description, .about-us-section, .contact-section, .follow-connect {
+    .footer-description,
+    .about-us-section,
+    .contact-section,
+    .follow-connect {
         margin: 10px 0;
         text-align: center;
         margin: 10px;
@@ -337,17 +385,23 @@ nav ul li a {
 }
 
 @media (max-width: 480px) {
-    .header, .nav, .footer-content {
+    .header,
+    .nav,
+    .footer-content {
         flex-direction: column;
         align-items: center;
     }
 
-    .header img, .footer-logo {
+    .header img,
+    .footer-logo {
         height: 50px;
         margin: 0 auto;
     }
 
-    .footer-description, .about-us-section, .contact-section, .follow-connect {
+    .footer-description,
+    .about-us-section,
+    .contact-section,
+    .follow-connect {
         margin: 5px 0;
         text-align: center;
     }
@@ -372,12 +426,12 @@ footer p {
 .footer-description {
     flex: 1;
     text-align: left;
-    margin-left: 20px; 
+    margin-left: 20px;
     margin-top: 40px;
-    font-size: 16px; 
-    line-height: 1.5; 
-    color: #333; 
-    padding: 10px 0; 
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    padding: 10px 0;
 }
 
 .about-us-section {
@@ -398,40 +452,28 @@ footer p {
 }
 
 .contact-section p {
-    margin-top: 5px; 
+    margin-top: 5px;
 }
 
 .contact-section p strong,
 .contact-section p a {
-    color: #333; 
+    color: #333;
     text-decoration: none;
 }
 
 .contact-section p a:hover {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .follow-connect {
-    text-align: left; 
-    flex: 1; 
-    margin-right: 70px; 
+    text-align: left;
+    flex: 1;
+    margin-right: 70px;
 }
 
 .social-icons a img {
     width: 30px;
     height: 30px;
-}
-
-.container {
-    display: flex;
-    height: 100vh;
-}
-
-.sidebar {
-    width: 20%;
-    background-color: #9ec6f8;
-    padding: 20px;
-    text-align: center;
 }
 
 .profile-pic img {
@@ -449,22 +491,16 @@ footer p {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    width: 100%;
 }
 
 .menu-item:hover {
     background-color: #86b3ea;
-    border-radius: 5px;
-}
-
-.main-content {
-    width: 80%;
-    padding: 20px;
-    background-color: #B6D1FA;
 }
 
 .profile-header {
-    padding: 20px;
-    border-radius: 5px;
+    font-size: 20px;
+    margin-top: -2%;
 }
 
 .profile-header h1,
@@ -496,7 +532,7 @@ footer p {
 
 .tab-line {
     border-bottom: 3px solid white;
-    width: 70%;
+    width: 100%; /* Changed from 70% to 100% for alignment */
     margin-top: -3px;
 }
 
@@ -508,20 +544,29 @@ footer p {
     color: white;
 }
 
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
 
-th, td {
+th,
+td {
     border: 2px solid white;
     padding: 10px;
     text-align: left;
-    width: 25%; 
+    width: 25%;
 }
 
 th {
-    background-color: #4a82d8; 
+    background-color: #4a82d8;
     color: white;
 }

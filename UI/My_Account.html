@@ -78,42 +78,76 @@
                 <p>Personal Statement</p>
             </div>
             <div class="nav-tabs">
-                <a href="#" class="tab active">HISTORY</a>
-                <a href="#" class="tab">ABOUT</a>
-                <a href="#" class="tab">CONTACT</a>
+                <a href="javascript:void(0);" class="tab-button tab active" onclick="openTab(event, 'history')">HISTORY</a>
+                <a href="javascript:void(0);" class="tab-button tab" onclick="openTab(event, 'about')">ABOUT</a>
+                <a href="javascript:void(0);" class="tab-button tab" onclick="openTab(event, 'contact')">CONTACT</a>
             </div>
             <div class="tab-line"></div>
-            <div class="section">
-                <h2>DONATION HISTORY</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>DATE OF DONATION</th>
-                            <th>PURPOSE</th>
-                            <th>DONATION METHOD</th>
-                            <th>LOCATION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Donation history rows go here -->
-                    </tbody>
-                </table>
+            <div id="history" class="tab-content" style="display:block;">
+                <div class="section">
+                    <h2>DONATION HISTORY</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DATE OF DONATION</th>
+                                <th>PURPOSE</th>
+                                <th>DONATION METHOD</th>
+                                <th>LOCATION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Donation history rows go here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="section">
+                    <h2>VOLUNTEER HISTORY</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DATE OF SERVICE</th>
+                                <th>VOLUNTEER POSITION</th>
+                                <th>DESCRIPTION OF WORK</th>
+                                <th>PURPOSE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Volunteer history rows go here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="section">
-                <h2>VOLUNTEER HISTORY</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>DATE OF SERVICE</th>
-                            <th>VOLUNTEER POSITION</th>
-                            <th>DESCRIPTION OF WORK</th>
-                            <th>PURPOSE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Volunteer history rows go here -->
-                    </tbody>
-                </table>
+            <div id="about" class="tab-content">
+                <div class="section">
+                    <h2>My Details</h2>
+                    <div class="details-container">
+                        <div class="details-labels">
+                            <p>Birthday</p>
+                            <p>Address</p>
+                            <p>Career</p>
+                            <p>Passions/Interests</p>
+                            <p>Skills</p>
+                        </div>
+                        <div class="details-info">
+                            <p>January 1, 1990</p>
+                            <p>123 Main St, City</p>
+                            <p>Software Developer</p>
+                            <p>Reading, Coding</p>
+                            <p>Python, JavaScript</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contact" class="tab-content">
+                <div class="section">
+                    <h2>CONTACT DETAILS</h2>
+                        <div class="details-container">
+                            <div class="details-labels">
+                                <p>Contact Number</p>
+                                <p>Email Address</p>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
