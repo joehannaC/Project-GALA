@@ -532,7 +532,7 @@ footer p {
 
 .tab-line {
     border-bottom: 3px solid white;
-    width: 100%; /* Changed from 70% to 100% for alignment */
+    width: 70%; 
     margin-top: -3px;
 }
 
