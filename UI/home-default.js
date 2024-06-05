@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 const botMessage = document.createElement('div');
                 botMessage.classList.add('chatbox-message', 'bot-message');
-                botMessage.innerHTML = `<img src="images/image.png" alt="Bot"><span>Thank you for your message!</span>`;
+                botMessage.innerHTML = `<img src="../UI/images/logo.png" alt="Bot"><span>Thank you for your message!</span>`;
                 chatboxMessages.appendChild(botMessage);
                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 

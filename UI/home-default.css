@@ -559,8 +559,8 @@ nav ul li.login .input-container input {
 }
 
 nav ul li.login .input-icon {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin-right: 10px;
 }
 
@@ -701,7 +701,6 @@ label {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #365899;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -709,8 +708,8 @@ label {
 }
 
 .chatbot-circle img {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
 }
 
 .chatbox {
@@ -730,15 +729,17 @@ label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
     background-color: #365899;
     color: white;
+    padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .chatbox-title {
     font-size: 16px;
+    font-weight: bold;
+    margin-left: -15%;
 }
 
 .chatbox-close {
@@ -759,7 +760,7 @@ label {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #B6D1FA;
 }
 
 .chatbox-message {
@@ -792,7 +793,7 @@ label {
 }
 
 .bot-message span {
-    background-color: #e1e1e1;
+    background-color: #B6D1FA;
 }
 
 .user-message span {
@@ -822,9 +823,11 @@ label {
 }
 
 .user-timestamp {
+    margin-top: -1%;
     text-align: right;
 }
 
 .bot-timestamp {
     text-align: left;
 }
+
