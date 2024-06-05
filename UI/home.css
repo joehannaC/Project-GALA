@@ -147,7 +147,7 @@ nav ul li.logout {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
     z-index: 1;
-    margin-left: -25px;
+    margin-left: -15px;
 }
 
 .dropdown-content a {
@@ -196,26 +196,6 @@ nav ul li.logout {
     margin-left: 50px;
 }
 
-.contact-dropdown {
-    display: none;
-    position: absolute;
-    background-color: #365899;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-    z-index: 1;
-    margin-left: -25px;
-}
-
-.logout-dropdown {
-    display: none;
-    position: absolute;
-    background-color: #365899;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-    z-index: 1;
-    margin-left: -2px;
-}
-
 .programs-dropdown {
     display: none;
     position: absolute;
@@ -223,7 +203,7 @@ nav ul li.logout {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
     z-index: 1;
-    margin-left: -30px;
+    margin-left: -20px;
 }
 
 nav ul li a[data-arrow]::after {
@@ -433,12 +413,6 @@ footer p {
     padding: 10px 0; 
 }
 
-.about-us-section {
-    flex: 1;
-    margin-left: 150px;
-    margin-top: 10px;
-}
-
 .contact-section {
     flex: 1;
     margin-left: 80px;
@@ -475,3 +449,7 @@ footer p {
     height: 30px;
 }
 
+.contact-dropdown {
+    margin-left: -15px; 
+    margin-top: 0; 
+}
