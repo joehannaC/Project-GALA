@@ -456,7 +456,7 @@ footer p {
 nav ul li.login .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #365899;
+    background-color: hsl(219, 48%, 41%, 0.5);
     min-width: 400px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
     z-index: 1;
@@ -492,12 +492,14 @@ nav ul li.login .switch {
     position: relative;
     width: 200px;
     height: 50px;
-    background-color: #c3dbff;
+    background-color: #4A82D8;
+    border-width: 2px;
     border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     overflow: hidden;
+    border: 2px solid #22529b;
 }
 
 nav ul li.login .switch button {
@@ -523,7 +525,7 @@ nav ul li.login .switch .slider {
     position: absolute;
     width: 50%;
     height: 100%;
-    background-color: #678bcf;
+    background-color: #22529B;
     border-radius: 25px;
     transition: transform 0.3s;
     z-index: 0; 
@@ -594,7 +596,8 @@ nav ul li.login .submit-btn {
     color: white;
     cursor: pointer;
     margin-top: 20px;
-    border-radius: 15px; 
+    border-radius: 15px;
+    
 }
 
 nav ul li.login .submit-btn:hover {
