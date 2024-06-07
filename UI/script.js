@@ -9,3 +9,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
         alert('Invalid email or password!');
     }
 });
+
+        function login() {
+            window.location.href = "home.html";
+        }
