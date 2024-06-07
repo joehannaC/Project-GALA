@@ -73,4 +73,76 @@ document.getElementById('user-input').addEventListener('keypress', function(even
     }
 });
 
+let qaCount = 0;
+
+function addQA() {
+    const questionInput = document.getElementById('question');
+    const answerInput = document.getElementById('answer');
+    const question = questionInput.value.trim();
+    const answer = answerInput.value.trim();
+
+    if (question !== '' && answer !== '') {
+        const qaTableBody = document.querySelector('#qa-table tbody');
+        const newRow = qaTableBody.insertRow();
+
+        const cellNumber = newRow.insertCell(0);
+        cellNumber.textContent = ++qaCount;
+
+        const cellQuestion = newRow.insertCell(1);
+        cellQuestion.textContent = question;
+
+        const cellAnswer = newRow.insertCell(2);
+        cellAnswer.textContent = answer;
+
+        const cellActions = newRow.insertCell(3);
+        
+        const deleteButton = document.createElement('img');
+        deleteButton.src = 'delete.png';
+        deleteButton.alt = 'Delete';
+        deleteButton.title = 'Delete';
+        deleteButton.classList.add('action-icon');
+        deleteButton.onclick = () => deleteQA(newRow);
+        cellActions.appendChild(deleteButton);
+        
+        const editButton = document.createElement('img');
+        editButton.src = 'edit.png';
+        editButton.alt = 'Edit';
+        editButton.title = 'Edit';
+        editButton.classList.add('action-icon');
+        editButton.onclick = () => editQA(newRow);
+        cellActions.appendChild(editButton);
+
+        questionInput.value = '';
+        answerInput.value = '';
+    }
+}
+
+function editQA(row) {
+    const cells = row.cells;
+    document.getElementById('question').value = cells[1].textContent;
+    document.getElementById('answer').value = cells[2].textContent;
+
+    row.remove();
+
+    qaCount--;
+}
+
+function deleteQA(row) {
+    row.remove();
+
+    qaCount--;
+
+    updateQuestionNumbers();
+}
+
+function updateQuestionNumbers() {
+    const rows = document.querySelectorAll('#qa-table tbody tr');
+    rows.forEach((row, index) => {
+        row.cells[0].textContent = index + 1;
+    });
+}
+
+function cancelAdd() {
+    window.location.href = "home.html";
+}
 
