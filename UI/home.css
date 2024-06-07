@@ -413,6 +413,10 @@ footer p {
     padding: 10px 0; 
 }
 
+.about-us-section {
+    margin-left: 150px;
+}
+
 .contact-section {
     flex: 1;
     margin-left: 80px;
