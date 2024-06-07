@@ -2,7 +2,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #b0dcff;
+    background-image: url('Background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -32,24 +34,44 @@ h3 {
     font-size: 25px;
 }
 
-
 .container {
     display: flex;
     flex: 1;
     padding: 20px;
-    gap: 20px;
+    gap: 100px;
 }
 
 .chat-container {
+    width: 600px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 2;
     background-color: rgb(255, 255, 255);
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    margin-right: 50px;
+    margin-left: 300px;
+}
+
+.chat-header {
+    background-color: #22529B;
+    height: 50px;
+}
+
+.chat-logo {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+
+.concierge-text {
+    margin-top: -40px; 
+    margin-left: 60px;
+    color: white;
 }
 
 .chat-box {
@@ -65,7 +87,7 @@ h3 {
     padding: 10px;
     border-radius: 8px;
     position: relative;
-    word-wrap: break-word; 
+    word-wrap: break-word;
 }
 
 .bot-message {
@@ -89,6 +111,8 @@ input[type="text"] {
     border: none;
     border-radius: 0 0 0 8px;
     outline: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
 }
 
 button {
@@ -106,14 +130,44 @@ button:hover {
     background-color: #023264;
 }
 
+.button-group {
+    display: flex;
+    gap: 5px; 
+}
+
+.button-gap {
+    flex-grow: 1; 
+}
+
+
+.action-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 5px; 
+}
+
+ #qa-table th:nth-child(4),
+ #qa-table td:nth-child(4) {
+     width: 60px; 
+ }
+
 .admin-container {
-    flex: 1;
-    padding: 20px;
+    width: 600px;
+    max-height: 900px; 
+    overflow-y: auto;
     background-color: #dcf1ff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 50px;
+    margin-left: 20px; 
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    word-break: break-all;
+    padding: 20px; 
 }
+
 
 .input-group {
     margin-bottom: 10px;
@@ -135,6 +189,7 @@ input[type="text"] {
 table {
     width: 100%;
     border-collapse: collapse;
+    word-wrap: break-word; 
 }
 
 table, th, td {
@@ -144,6 +199,8 @@ table, th, td {
 th, td {
     padding: 8px;
     text-align: left;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 
 th {
@@ -153,10 +210,6 @@ th {
 
 td {
     background-color: #f9f9f9;
-}
-
-td + td {
-    padding-left: 20px;
 }
 
 @media screen and (max-width: 768px) {
