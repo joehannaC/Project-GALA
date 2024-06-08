@@ -206,6 +206,16 @@ nav ul li.logout {
     margin-left: -20px;
 }
 
+.logout-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #365899;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    margin-left: -2px;
+}
+
 nav ul li a[data-arrow]::after {
     content: 'ᐳ'; 
     display: inline-block;
