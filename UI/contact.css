@@ -2,13 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #b6d1fa;
+    background-image: url('../UI/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #b6d1fa; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     overflow-y: auto; 
     overflow-x: hidden;
 }
+
 
 .spacer-container {
     height: 500px; 
@@ -129,7 +133,7 @@ nav ul li.logout {
     right: 0;
     border-radius: 3px 0 0 3px;
 }
-
+ 
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
 }
@@ -376,7 +380,7 @@ nav ul li a {
 }
 
 .get-in-touch-title {
-    margin-left: -300px;
+    margin-left:-500px;
     padding-bottom: 20px; 
 }
 
@@ -689,6 +693,8 @@ footer p {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 180px;
+    margin-right: -180px;
 }
 
 .get-in-touch form button:hover {
@@ -740,4 +746,6 @@ button[type="submit"] {
     margin: 0 auto; 
     width: 60%; 
     margin-bottom: 300px; 
+margin-left: 550px;
 }
+
