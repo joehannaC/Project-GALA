@@ -737,6 +737,7 @@ label {
 
 .journey-content p {
     text-align: justify;
+    margin: 25px 10px;
 }
 
 .journey-container h1 {
@@ -753,7 +754,8 @@ label {
 }
 
 .journey-content {
-    background: #316DC8;
+    background: hsl(216, 61%, 49%, 0.5);
     padding: 20px;
     border-radius: 10px;
+    margin: 0px;
 }
