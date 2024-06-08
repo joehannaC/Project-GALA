@@ -246,12 +246,68 @@ nav ul li a[data-arrow]:hover::after {
     transform: rotate(90deg);
 }
 
-.content {
-    flex: 1;
-    overflow-y: auto; 
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 300px;
+
+.background-container {
+    position: relative;
+    background: url('../UI/images/background_blue.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    padding: 20px;
+    text-align: left;
+    flex: 1 0 auto;
+}
+
+.contact-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    color: #333; /* Dark text color */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 70%; /* Adjusted width */
+    margin: 0 auto; /* Centered container */
+}
+
+.contact-details {
+    margin: 20px 0;
+    color: #22529b;
+}
+
+.contact-details input[type="text"],
+.contact-details input[type="email"],
+.contact-details input[type="tel"],
+.contact-details textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-details label {
+    font-weight: bold;
+    display: block;
+}
+
+.submit-button-container {
+    text-align: center;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #22529b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #184d9d;
 }
 
 footer {
@@ -263,8 +319,7 @@ footer {
     flex-direction: column;
     align-items: center;
     color: #333;
-    width: 100%;
-    
+    flex-shrink: 0;
 }
 
 .footer-content {
@@ -330,31 +385,6 @@ footer {
     margin-left: 200px;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin: 0;
-    margin-bottom: 100px; 
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-weight: bold; 
-}
-
 .contact-section p {
     margin-top: 10px; 
 }
@@ -382,19 +412,14 @@ nav ul li a {
     font-family: Impact, sans-serif;
     text-decoration: underline;
     text-decoration-skip-ink: auto;
-    margin-bottom: 100px;
-}
-
-.where-to-find-us-title {
-    margin-left: -400px;
+    margin-bottom: 20px;
 }
 
 .get-in-touch-title {
-    margin-left:-500px;
-    padding-bottom: 20px; 
+    text-align: left;
+    margin-left: 7%;
+    margin-top: 2%;
 }
-
-
 
 @media (max-width: 1200px) {
     .footer-content {
@@ -542,219 +567,4 @@ footer p {
 .social-icons a img {
     width: 30px;
     height: 30px;
-}
-
-.upload-button {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    z-index: 1;
-    margin-left: -10px;
-}
-
-.upload-button:last-of-type {
-    top: calc(100% - 50px);
-    transform: translateX(-50%);
-}
-
-.photo-frame {
-    position: relative;
-    border: 2px solid #203877;
-    border-radius: 10px;
-    width: 400px;
-    height: 600px;
-    margin-top: 200px;
-    order: -1;
-    margin-left: 100px;
-    overflow: hidden;
-}
-
-#photo-upload {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-}
-
-#uploaded-photo {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    object-fit: cover;
-}
-
-.contact-container {
-    flex-grow: 1;
-}
-
-.contact-details {
-    margin-left: 100px; 
-    margin-top: 60px;
-    font-size: 20px;
-    color: #22529b;
-}
-
-
-.contact-details input[type="text"],
-.contact-details input[type="email"] {
-    width: 80%;
-    padding: 8px;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.contact-details label {
-    font-weight: bold;
-    margin-bottom: 6px;
-    display: block;
-}
-
-.save-button {
-   
-    position: relative; 
-    top: 10px;
-    left: 10px; 
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    z-index: 1;
-    margin-left: 1000px; 
-    margin-top: 50px;
-}
-
-.contact-dropdown {
-    margin-left: -15px; 
-    margin-top: 0; 
-}
-
-.get-in-touch {
-    margin-top: 0px; 
-    margin-left: 0px; 
-    margin-bottom: 300px;
-}
-
-.get-in-touch h2 {
-    color: rgb(23, 74, 184);
-    font-size: 50px; 
-    font-family: Impact, sans-serif;
-    text-decoration: underline;
-    text-decoration-skip-ink: auto;
-    margin-bottom: 20px; 
-}
-
-.get-in-touch p {
-    margin-bottom: 15px; 
-}
-
-.get-in-touch form {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-}
-
-.get-in-touch form div {
-    margin-bottom: 15px; 
-}
-
-.get-in-touch form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.get-in-touch form input[type="text"],
-.get-in-touch form input[type="email"],
-.get-in-touch form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px; 
-}
-
-.get-in-touch form textarea {
-    height: 150px;
-}
-
-.get-in-touch form button {
-    padding: 10px 20px;
-    background-color: #22529b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 180px;
-    margin-right: -180px;
-}
-
-.get-in-touch form button:hover {
-    background-color: #184d9d;
-}
-
-.form-group.full-name,
-.form-group.email,
-.form-group.contact-number {
-    grid-column: span 1;
-}
-
-.form-group.subject,
-.form-group.message {
-    grid-column: span 2;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-group textarea {
-    height: 150px;
-}
-
-button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #22529b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: auto;
-}
-
-.contact-container.get-in-touch {
-    padding: 20px;
-    margin: 0 auto; 
-    width: 60%; 
-    margin-bottom: 300px; 
-margin-left: 550px;
 }
