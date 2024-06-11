@@ -1,4 +1,11 @@
 let qaData = [];
+let qaCount = 0;
+
+document.getElementById('user-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
 
 function sendMessage() {
     const userInput = document.getElementById('user-input');
@@ -32,56 +39,7 @@ function addQA() {
 
     if (question !== '' && answer !== '') {
         qaData.push({ question, answer });
-        displayQAList();
-        questionInput.value = '';
-        answerInput.value = '';
-    }
-}
-
-function displayQAList() {
-    const qaTableBody = document.getElementById('qa-table').querySelector('tbody');
-    qaTableBody.innerHTML = '';
-    qaData.forEach((qa, index) => {
-        const row = document.createElement('tr');
-        const numberCell = document.createElement('td');
-        const questionCell = document.createElement('td');
-        const answerCell = document.createElement('td');
-
-        numberCell.textContent = index + 1;
-        questionCell.textContent = qa.question;
-        answerCell.textContent = qa.answer;
-
-        row.appendChild(numberCell);
-        row.appendChild(questionCell);
-        row.appendChild(answerCell);
-        qaTableBody.appendChild(row);
-    });
-}
-
-function getBotResponse(userMessage) {
-    for (let i = 0; i < qaData.length; i++) {
-        if (userMessage.toLowerCase() === qaData[i].question.toLowerCase()) {
-            return qaData[i].answer;
-        }
-    }
-    return "Sorry, I don't understand that question.";
-}
-
-document.getElementById('user-input').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        sendMessage();
-    }
-});
-
-let qaCount = 0;
-
-function addQA() {
-    const questionInput = document.getElementById('question');
-    const answerInput = document.getElementById('answer');
-    const question = questionInput.value.trim();
-    const answer = answerInput.value.trim();
-
-    if (question !== '' && answer !== '') {
+        
         const qaTableBody = document.querySelector('#qa-table tbody');
         const newRow = qaTableBody.insertRow();
 
@@ -122,14 +80,20 @@ function editQA(row) {
     document.getElementById('question').value = cells[1].textContent;
     document.getElementById('answer').value = cells[2].textContent;
 
+    const index = Array.from(row.parentNode.children).indexOf(row);
+    qaData.splice(index, 1);
+    
     row.remove();
-
     qaCount--;
+
+    updateQuestionNumbers();
 }
 
 function deleteQA(row) {
-    row.remove();
+    const index = Array.from(row.parentNode.children).indexOf(row);
+    qaData.splice(index, 1);
 
+    row.remove();
     qaCount--;
 
     updateQuestionNumbers();
@@ -140,9 +104,18 @@ function updateQuestionNumbers() {
     rows.forEach((row, index) => {
         row.cells[0].textContent = index + 1;
     });
+    qaCount = rows.length;
+}
+
+function getBotResponse(userMessage) {
+    for (let i = 0; i < qaData.length; i++) {
+        if (userMessage.toLowerCase() === qaData[i].question.toLowerCase()) {
+            return qaData[i].answer;
+        }
+    }
+    return "Sorry, I don't understand that question.";
 }
 
 function cancelAdd() {
     window.location.href = "home.html";
 }
-
