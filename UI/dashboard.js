@@ -1,3 +1,5 @@
+let websiteVisits = 0;
+
 document.addEventListener("DOMContentLoaded", function() {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -9,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     loadContent('overview');
     loadUserList();
+    loadPendingApplications(); 
 });
 
 function loadContent(content) {
@@ -18,10 +21,16 @@ function loadContent(content) {
 
     document.getElementById(`panel-${content}`).style.display = 'block';
 
-    var sectionTitle = content.charAt(0).toUpperCase() + content.slice(1);
+    var sectionTitle = content.replace(/([A-Z])/g, ' $1').trim();
+    sectionTitle = sectionTitle.charAt(0).toUpperCase() + sectionTitle.slice(1);
     document.querySelector('.dashboard-header h1').innerText = sectionTitle;
-}
 
+    if (content === 'volunteerApplication') {
+        loadVolunteerApplications();
+    } else if (content === 'partnerApplication') {
+        loadPartnerApplications();
+    }
+}
 
 function loadUserList() {
     var users = [ // sample
@@ -57,20 +66,107 @@ function loadUserList() {
     totalUsers.textContent = users.length;
 }
 
-// Sample data for pending applications
-const pendingApplications = [
+function loadVolunteerApplications() {
+    const volunteerTable = document.getElementById('volunteer-applications');
+    volunteerTable.innerHTML = ''; 
+
+    volunteerApplications.forEach(application => {
+        const row = `
+            <tr>
+                <td>${application.name}</td>
+                <td>${application.email}</td>
+                <td>${application.phone}</td>
+                <td>${application.skills}</td>
+                <td>${application.availability}</td>
+                <td>${application.previousExperience}</td>
+                <td>${application.whyVolunteer}</td>
+                <td>
+                    <button onclick="approveVolunteer('${application.email}')">Approve</button>
+                    <button onclick="rejectVolunteer('${application.email}')">Reject</button>
+                </td>
+            </tr>
+        `;
+        volunteerTable.insertAdjacentHTML('beforeend', row);
+    });
+}
+
+function loadPartnerApplications() {
+    const partnerTable = document.getElementById('partner-applications');
+    partnerTable.innerHTML = ''; 
+    partnerApplications.forEach(application => {
+        const row = `
+            <tr>
+                <td>${application.organizationName}</td>
+                <td>${application.contactPerson}</td>
+                <td>${application.email}</td>
+                <td>${application.phone}</td>
+                <td>${application.projectCollaboration}</td>
+                <td>${application.organizationDescription}</td>
+                <td>
+                    <button onclick="approvePartner('${application.email}')">Approve</button>
+                    <button onclick="rejectPartner('${application.email}')">Reject</button>
+                </td>
+            </tr>
+        `;
+        partnerTable.insertAdjacentHTML('beforeend', row);
+    });
+}
+
+function approveVolunteer(email) {
+    console.log(`Volunteer application for ${email} approved.`);
+}
+
+function rejectVolunteer(email) {
+    console.log(`Volunteer application for ${email} rejected.`);
+}
+
+function approvePartner(email) {
+    console.log(`Partner application for ${email} approved.`);
+}
+
+function rejectPartner(email) {
+    console.log(`Partner application for ${email} rejected.`);
+}
+
+// Sample volunteer applications
+const volunteerApplications = [
     {
-        type: "Volunteer with Us",
-        name: "John Doe",
-        email: "johndoe@example.com",
-        skills: "Web development, Marketing",
-        whyVolunteer: "I want to make a positive impact on society."
+        name: "Juan Dela Cruz",
+        email: "juan@example.com",
+        phone: "0912345",
+        skills: "Web Development, Marketing",
+        availability: "10/24/2024 11:00AM",
+        previousExperience: "Volunteered at local community center",
+        whyVolunteer: "I want to contribute to society and make a positive impact."
     },
     {
-        type: "Partner with Us",
-        organization: "ABC Organization",
-        contactPerson: "Jane Smith",
-        email: "janesmith@abc.org",
-        interest: "Education, Community development"
+        name: "Alice Lim",
+        email: "alice@example.com",
+        phone: "0912345",
+        skills: "Teaching, Event Planning",
+        availability: "04/13/2024 9:00AM",
+        previousExperience: "Tutored high school students",
+        whyVolunteer: "I love teaching and want to help underprivileged children."
     }
 ];
+
+const partnerApplications = [
+    {
+        organizationName: "ABC Organization",
+        contactPerson: "Christian Dior",
+        email: "dior@example.com",
+        phone: "09173648",
+        projectCollaboration: "Education, Health",
+        organizationDescription: "ABC Organization is dedicated to providing educational opportunities for children in need."
+    },
+    {
+        organizationName: "XYZ Foundation",
+        contactPerson: "Luke Kah",
+        email: "luke@example.com",
+        phone: "096969",
+        projectCollaboration: "Environmental Sustainability",
+        organizationDescription: "XYZ Foundation focuses on environmental conservation and sustainability projects."
+    }
+];
+
+
