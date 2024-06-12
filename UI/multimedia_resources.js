@@ -63,13 +63,13 @@ function createAlbum() {
         const reader = new FileReader();
         reader.onload = (event) => {
             album.images.push(event.target.result);
-         
+
             if (album.images.length === selectedFiles.length) {
                 displayAlbum(album);
                 closeCreateAlbumModal();
                 document.getElementById('createAlbumForm').reset();
                 document.getElementById('albumPreviewContainer').innerHTML = '';
-                selectedFiles = []; 
+                selectedFiles = [];
             }
         };
         reader.readAsDataURL(file);
@@ -112,13 +112,14 @@ function displayAlbum(album) {
     if (albumsInRow === 0 && albums.length !== 0) {
         const br = document.createElement('br');
         br.classList.add('album-row-break');
-        photoGallery.appendChild(br);
+        photoGallery.appendChild(br); 
     }
 
     if (albumsInRow !== 0 && albumsInRow !== albumsPerRow - 1) {
         albumElement.style.marginRight = '10px';
     }
 }
+
 
 function adjustAlbumLayout() {
     const photoGallery = document.getElementById('photoGallery');
@@ -136,6 +137,7 @@ function adjustAlbumLayout() {
 function deleteAlbum(albumId) {
     console.log('Deleting album:', albumId);
 
+    // Remove the album element from the DOM
     const albumElement = document.getElementById(albumId);
     if (albumElement) {
         albumElement.remove();
@@ -145,17 +147,18 @@ function deleteAlbum(albumId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-
+            
         },
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to delete album');
         }
-
+   
     })
     .catch(error => {
         console.error('Error deleting album:', error);
+        
     });
 }
 
@@ -181,7 +184,7 @@ function editAlbum(albumId) {
         year: yearElement.innerHTML,
         category: categoryElement.innerHTML
     };
-
+s
     titleElement.innerHTML = `<label for="editTitle-${albumId}"><strong>Album Title:</strong></label>
                                 <input type="text" id="editTitle-${albumId}" value="${title}" required>`;
     yearElement.innerHTML = `<label for="editYear-${albumId}"><strong>Year:</strong></label>
@@ -256,6 +259,7 @@ function saveAlbum(albumId) {
             <img src="edit.png" alt="Edit" style="width: 15px; height: 15px; margin-top:15px" title="Edit">
         </button>`;
 
+
     delete originalAlbumDetails[albumId];
 }
 
@@ -272,10 +276,10 @@ function closeFullSize() {
 
 function handleFileSelect(event) {
     const files = Array.from(event.target.files);
-    console.log('Selected Files:', files); 
+    console.log('Selected Files:', files);
 
     const previewContainer = document.getElementById('albumPreviewContainer');
-  
+
     previewContainer.innerHTML = '';
 
     files.forEach(file => {
@@ -297,6 +301,7 @@ function handleFileSelect(event) {
 
                 selectedFiles = selectedFiles.filter(f => f !== file);
             });
+            
 
             imageContainer.appendChild(image);
             imageContainer.appendChild(removeButton);
@@ -304,10 +309,6 @@ function handleFileSelect(event) {
             previewContainer.appendChild(imageContainer);
 
             selectedFiles.push(file);
-
-            if (selectedFiles.length === files.length) {
-                createAlbum();
-            }
         };
 
         reader.readAsDataURL(file);
