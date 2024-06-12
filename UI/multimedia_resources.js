@@ -137,7 +137,6 @@ function adjustAlbumLayout() {
 function deleteAlbum(albumId) {
     console.log('Deleting album:', albumId);
 
-    // Remove the album element from the DOM
     const albumElement = document.getElementById(albumId);
     if (albumElement) {
         albumElement.remove();
@@ -276,11 +275,8 @@ function closeFullSize() {
 
 function handleFileSelect(event) {
     const files = Array.from(event.target.files);
-    console.log('Selected Files:', files);
-
+    console.log('Selected Files:', files); 
     const previewContainer = document.getElementById('albumPreviewContainer');
-
-    previewContainer.innerHTML = '';
 
     files.forEach(file => {
         const reader = new FileReader();
@@ -298,10 +294,9 @@ function handleFileSelect(event) {
             removeButton.className = 'remove-image';
             removeButton.addEventListener('click', function () {
                 imageContainer.remove();
-
+                
                 selectedFiles = selectedFiles.filter(f => f !== file);
             });
-            
 
             imageContainer.appendChild(image);
             imageContainer.appendChild(removeButton);
@@ -314,3 +309,5 @@ function handleFileSelect(event) {
         reader.readAsDataURL(file);
     });
 }
+
+
