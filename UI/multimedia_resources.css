@@ -1,10 +1,10 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('../UI/images/background.png'); 
+    background-image: url('../UI/Images/Background.png');
     background-size: cover; 
+    background-position: center; 
     position: relative;
     min-height: 100vh;
     box-sizing: border-box;
@@ -256,7 +256,7 @@ footer .social-icons a:hover {
 
 @media (max-width: 992px) {
     .album {
-        width: calc(33.33% - 20px); 
+        width: calc(33.33% - 20px); /* Adjust width for 3 albums per row on smaller screens */
     }
 }
 
@@ -380,7 +380,7 @@ form {
     width: 400px;
     height: 500px;
     border: 2px solid #ffffff;
-    background-color: #609aca;
+    background-color: #d0eaff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     margin-bottom: 20px;
