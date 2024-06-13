@@ -1,5 +1,3 @@
-// featured-stories.js
-
 let currentAlbumImages = [];
 let currentImageIndex = 0;
 let selectedFile = null;
