@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Stories</title>
+    <link rel="stylesheet" href="featured-stories.css">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="../UI/images/gala-logo.png" alt="Gala Logo" class="logo"></a>
+        <div id="datetime"></div>
+    </header>
+
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="#" data-arrow> REPORTS AND PUBLICATIONS</a>
+                <div class="dropdown-content reports-dropdown"> 
+                    <a href="#">FEATURED STORIES</a>
+                    <a href="#">ANNUAL REPORTS</a>
+                    <a href="#">MULTIMEDIA RESOURCES</a>
+                </div>
+            </li>
+            <li><a href="chatbot.html">CHATBOT</a></li>
+            <li><a href="dashboard.html">DASHBOARD</a></li>
+            <li class="dropdown">
+                <a href="#" data-arrow> CONTACT</a>
+                <div class="dropdown-content reports-dropdown contact-dropdown"> 
+                    <a href="contact.html">CONTACT US</a>
+                </div>
+            </li>
+            <li class="logout"><a href="index.html">LOGOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="album-section">
+        <div class="create-album-container">
+            <button class="create-album-button" onclick="openCreateAlbumModal()">
+                <div class="create-album-icon">
+                    <span>&#43;</span>
+                </div>
+                Add Story
+            </button>
+        </div>
+
+        <div id="createAlbumModal" class="modal">
+            <div class="modal-content" id="modalContent">
+                <span class="close" onclick="closeCreateAlbumModal()">&times;</span>
+                <form id="createAlbumForm" onsubmit="event.preventDefault(); createAlbum();">
+                    <div class="form-group">
+                        <label for="albumTitle">Story Title:</label>
+                        <input type="text" id="albumTitle" name="albumTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="albumCaption">Description:</label>
+                        <textarea id="albumCaption" name="albumCaption" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="albumAuthor">Author:</label>
+                        <input type="text" id="albumAuthor" name="albumAuthor" required>
+                    </div>
+                    <div class="form-group file-upload">
+                        <label for="albumImages">Upload Image:</label>
+                        <input type="file" id="albumImages" name="albumImages" accept="image/*" required>
+                        <div class="photo-preview" id="albumPreviewContainer"></div> <!-- This is where previews will be displayed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="albumCategory">Category:</label>
+                        <select id="albumCategory" name="albumCategory" required>
+                            <option value="" selected disabled>Select</option>
+                            <option value="Educational">Educational</option>
+                            <option value="Community Outreach">Community Outreach</option>
+                            <option value="Advocacy">Advocacy</option>
+                            <option value="Volunteer Engagement">Volunteer Engagement</option>
+                        </select>
+                    </div>                    
+                    <button type="submit" class="submit-button">Create</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="photo-gallery" id="photoGallery"></div>
+        
+        <div id="fullSizeOverlay" class="modal">
+            <div id="fullSizeContainer">
+                <span id="fullSizeCloseBtn" onclick="closeFullSize()">&times;</span>
+                <img id="fullSizeImage" src="" alt="Full Size Image">
+            </div>
+        </div>
+    </div>
+    
+    <script src="featured-stories.js"></script>
+</body>
+</html>
