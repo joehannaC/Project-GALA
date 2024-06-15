@@ -1,10 +1,8 @@
-
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
-
 
 .container {
     display: flex;
@@ -40,40 +38,15 @@ footer {
     margin-top: auto;
 }
 
-.details-container {
-    display: flex;
-    align-items: center;
+.menu-item.active {
+    background-color: #365899;
     color: white;
-    margin-bottom: 2%; 
-    justify-content: flex-start; 
-    margin-left: -20%;
-    min-width: 600px; 
 }
 
-.details-labels, .details-info {
-    padding: 1%;
-    flex: 1;
+input[readonly] {
+    background-color: #f1f1f1;
+    border: none;
 }
-
-.details-labels {
-    text-align: center;
-}
-
-.details-info {
-    position: relative;
-    margin-left: -15%; 
-}
-
-.details-info::before {
-    content: ""; 
-    position: absolute;
-    left: -20px; 
-    top: 0;
-    bottom: 0; 
-    width: 2px; 
-    background-color: white;
-}
-
 
 @media (max-width: 768px) {
     .details-container {
@@ -91,7 +64,6 @@ footer {
         left: 0; 
     }
 }
-
 
 .tab-button {
     padding: 1% 2%;
@@ -524,6 +496,11 @@ footer p {
     background-color: #86b3ea;
 }
 
+.menu-item.active {
+    background-color: #365899;
+    color: white;
+}
+
 .profile-header {
     font-size: 20px;
     margin-top: -2%;
@@ -595,4 +572,46 @@ td {
 th {
     background-color: #4a82d8;
     color: white;
+}
+
+/* ---------------------------------------------------- BODY ----------------------------------------------------*/
+.details-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-bottom: 2%; 
+    justify-content: flex-start; 
+    margin-left: -20%;
+    min-width: 600px; 
+}
+
+.details-labels, .details-info {
+    padding: 1%;
+    flex: 1;
+}
+
+.details-labels {
+    text-align: center;
+}
+
+.details-info {
+    position: relative;
+    margin-left: -15%; 
+}
+
+.details-info::before {
+    content: ""; 
+    position: absolute;
+    left: -20px; 
+    top: 0;
+    bottom: 0; 
+    width: 2px; 
+    background-color: white;
+}
+
+.details-info input {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
 }

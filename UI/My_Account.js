@@ -25,5 +25,32 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-// Open the default tab (History)
-document.getElementsByClassName("tab-button")[0].click();
+function highlightTab(evt) {
+    var i, menuItems;
+    menuItems = document.getElementsByClassName("menu-item");
+    for (i = 0; i < menuItems.length; i++) {
+        menuItems[i].className = menuItems[i].className.replace(" active", "");
+    }
+    evt.currentTarget.className += " active";
+    
+    if (evt.currentTarget.id === "edit-profile-tab") {
+        document.getElementById("contact-number").removeAttribute("readonly");
+        document.getElementById("email-address").removeAttribute("readonly");
+        document.getElementById("birthday").removeAttribute("readonly");
+        document.getElementById("address").removeAttribute("readonly");
+        document.getElementById("career").removeAttribute("readonly");
+        document.getElementById("passions").removeAttribute("readonly");
+        document.getElementById("skills").removeAttribute("readonly");
+    } else {
+        document.getElementById("contact-number").setAttribute("readonly", true);
+        document.getElementById("email-address").setAttribute("readonly", true);
+        document.getElementById("birthday").setAttribute("readonly", true);
+        document.getElementById("address").setAttribute("readonly", true);
+        document.getElementById("career").setAttribute("readonly", true);
+        document.getElementById("passions").setAttribute("readonly", true);
+        document.getElementById("skills").setAttribute("readonly", true);
+    }
+}
+
+// Ensure the PERSONAL tab is highlighted by default
+document.getElementById("personal-tab").click();
