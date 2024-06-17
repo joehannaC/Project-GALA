@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,7 @@
                 <li><a href="#" onclick="loadContent('users')">Users</a></li>
                 <li><a href="#" onclick="loadContent('volunteerApplication')">Volunteer Application</a></li>
                 <li><a href="#" onclick="loadContent('partnerApplication')">Partner Application</a></li>
+                <li><a href="#" onclick="loadContent('getInTouch')">Get In Touch</a></li> <!-- New link -->
             </ul>
         </div>
         <div class="dashboard-content" id="dashboard-content">
@@ -81,7 +82,7 @@
                     <!-- Content for volunteer application panel -->
                     <div class="panel-content">
                         <table class="application-table">
-                            <thead>
+                            <thead> 
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -119,19 +120,36 @@
                             </tbody>
                         </table>
                     </div>
-                </div>             
+                </div>
+                <div class="panel" id="panel-getInTouch" style="display: none;">
+                    <!-- Content for Get in Touch panel -->
+                    <div class="panel-content">
+                        <table class="get-in-touch-table">
+                            <thead>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Contact Number</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody id="get-in-touch-messages">
+                                <!-- Messages will be displayed here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-      
     <footer>
         <div class="footer-content">
-                </div>       
+        </div>
         <div class="footer-bottom">
             <p>&copy; 2024 Project GALA. All rights reserved.</p>
         </div>
     </footer>
-    
     <script src="dashboard.js"></script>
 </body>
 </html>
