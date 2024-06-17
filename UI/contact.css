@@ -248,7 +248,7 @@ footer {
     background-color: #d8e7ff;
     border-top: 10px solid #184d9d;
     padding: 20px;
-    text-align: center;
+    text-align: center; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -360,44 +360,90 @@ nav ul li a {
     }
 }
 
-@media (max-width: 1024px) {
-    .footer-logo {
-        width: 100px;
-        height: 100px;
-        margin-left: 0;
-        margin-top: 20px;
+@media (min-width: 1024px) {
+    .spacer-container {
+        height: 200px; 
     }
 
-    .footer-description {
-        margin-left: 0;
-        margin-top: 20px;
+    .content {
+        padding-bottom: 200px; 
     }
 
-    .footer-links div {
-        margin-right: 0;
-        margin-bottom: 20px;
-        text-align: center;
+    .photo-frame {
+        width: 500px; 
+        height: 500px; 
+        margin-top: 50px; 
+        margin-left: 100px; 
     }
 
-    .footer-bottom {
-        padding-left: 0;
+    .contact-details {
+        margin-left: 20px; 
     }
-}
 
-@media (max-width: 768px) {
+    .save-button {
+        margin-left: 20px; 
+    }
 
-    .contact-container {
-        padding: 10px;
-        margin: 0 auto;
-        width: 80%;
+    .get-in-touch {
+        margin-bottom: 200px; 
+    }
+
+    .get-in-touch form button {
+        margin-left: 150px; 
+        margin-right: 0; 
+    }
+
+    .contact-container.get-in-touch {
+        padding: 20px; 
+        margin: 0 auto; 
+        width: 60%; 
         margin-bottom: 200px;
+        margin-left: 400px; 
+    }
+
+    .save-button-business-hours {
+        margin-left: 500px; 
     }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 1280px) {
+    .spacer-container {
+        height: 300px; 
+    }
 
-    .contact-container {
-        width: 90%;
+    .content {
+        padding-bottom: 250px;
+    }
+
+    .photo-frame {
+        width: 600px; 
+        height: 600px; 
+        margin-top: 100px; 
+        margin-left: 200px; 
+    }
+
+    .contact-details {
+        margin-left: 100px; 
+    }
+
+    .save-button {
+        margin-left: 100px; 
+    }
+
+    .get-in-touch {
+        margin-bottom: 250px; 
+    }
+
+    .get-in-touch form button {
+        margin-left: 200px; 
+    }
+
+    .contact-container.get-in-touch {
+        margin-left: 550px; 
+    }
+
+    .save-button-business-hours {
+        margin-left: 700px; 
     }
 }
 
