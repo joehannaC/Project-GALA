@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadContent('overview');
     loadUserList();
     loadPendingApplications(); 
+    loadGetInTouchMessages();
 });
 
 function loadContent(content) {
@@ -29,6 +30,8 @@ function loadContent(content) {
         loadVolunteerApplications();
     } else if (content === 'partnerApplication') {
         loadPartnerApplications();
+    } else if (content === 'getInTouch') { 
+        loadGetInTouchMessages();
     }
 }
 
@@ -36,7 +39,7 @@ function loadUserList() {
     var users = [ // sample
         { name: "Juan Dela Cruz", idNumber: "12345", email: "juan@example.com", phone: "1234567890", address: "Real St, Manila", role: "Volunteer", online: true },
         { name: "Pepito Manaloto", idNumber: "54321", email: "pepito@example.com", phone: "0987654321", address: "Sampaguita St, Manila", role: "Donor", online: false }
-        // Add more user data as needed
+
     ];
     var userList = document.getElementById('user-list');
     var totalUsers = document.getElementById('total-users');
@@ -69,7 +72,6 @@ function loadUserList() {
 function loadVolunteerApplications() {
     const volunteerTable = document.getElementById('volunteer-applications');
     volunteerTable.innerHTML = ''; 
-
     volunteerApplications.forEach(application => {
         const row = `
             <tr>
@@ -93,6 +95,7 @@ function loadVolunteerApplications() {
 function loadPartnerApplications() {
     const partnerTable = document.getElementById('partner-applications');
     partnerTable.innerHTML = ''; 
+
     partnerApplications.forEach(application => {
         const row = `
             <tr>
@@ -140,7 +143,7 @@ const volunteerApplications = [
         whyVolunteer: "I want to contribute to society and make a positive impact."
     },
     {
-        name: "Alice Lim",
+        name: "Alice Guo",
         email: "alice@example.com",
         phone: "0912345",
         skills: "Teaching, Event Planning",
@@ -150,6 +153,7 @@ const volunteerApplications = [
     }
 ];
 
+// Sample partner applications
 const partnerApplications = [
     {
         organizationName: "ABC Organization",
@@ -169,4 +173,38 @@ const partnerApplications = [
     }
 ];
 
+function loadGetInTouchMessages() {
+    const messagesTable = document.getElementById('get-in-touch-messages');
+    messagesTable.innerHTML = ''; 
 
+    const getInTouchMessages = [
+        {
+            fullName: "James Blue",
+            email: "james@example.com",
+            contactNumber: "123456789",
+            subject: "Inquiry",
+            message: "I would like to know more about your programs."
+        },
+        {
+            fullName: "Hannah Montana",
+            email: "hannah@example.com",
+            contactNumber: "987654321",
+            subject: "Support",
+            message: "How can I support your organization?"
+        }
+
+    ];
+
+    getInTouchMessages.forEach(message => {
+        const row = `
+            <tr>
+                <td>${message.fullName}</td>
+                <td>${message.email}</td>
+                <td>${message.contactNumber}</td>
+                <td>${message.subject}</td>
+                <td>${message.message}</td>
+            </tr>
+        `;
+        messagesTable.insertAdjacentHTML('beforeend', row);
+    });
+}
