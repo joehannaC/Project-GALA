@@ -58,17 +58,19 @@ adminSwitch.addEventListener('click', () => {
     userSwitch.classList.remove('active');
 });
 
+document.addEventListener('DOMContentLoaded', function() {
 
     const modal = document.getElementById('myModal');
 
     const adminSwitch = document.getElementById('adminSwitch');
-    const passkeyInputs = document.querySelectorAll('.passkey-digit');
-    const passkeySubmit = document.getElementById('passkeySubmit');
+    const passkeyDigits = document.querySelectorAll('.passkey-digit');
+    const lockIcon = document.getElementById('lockIcon');
 
     const span = document.getElementsByClassName('close')[0];
 
     adminSwitch.addEventListener('click', function() {
         modal.style.display = 'block';
+        passkeyDigits[0].focus();
     });
 
     span.addEventListener('click', function() {
@@ -81,29 +83,34 @@ adminSwitch.addEventListener('click', () => {
         }
     });
 
-    passkeyInputs.forEach((input, index) => {
+    passkeyDigits.forEach((input, index) => {
         input.addEventListener('input', function() {
-            if (input.value.length === 1 && index < passkeyInputs.length - 1) {
-                passkeyInputs[index + 1].focus();
+            if (input.value.length === 1 && index < passkeyDigits.length - 1) {
+                passkeyDigits[index + 1].focus();
             }
         });
     });
 
-    passkeySubmit.addEventListener('click', function() {
-        let passkey = '';
-        passkeyInputs.forEach(input => {
-            passkey += input.value;
-        });
+    document.getElementById('passkeySubmit').addEventListener('click', function() {
+        const passkey = Array.from(passkeyDigits).map(input => input.value).join('');
         if (passkey === '1234') {
+            lockIcon.src = '../UI/images/pin_unlocked.png';
             showLoadingAndRedirect('index.html');
         } else {
-            alert('Incorrect passkey! Access denied.');
+            lockIcon.src = '../UI/images/pin_lock.png';
+            passkeyDigits.forEach(input => input.value = '');
+            passkeyDigits[0].focus();
+            alert('Incorrect pin. Please try again.');
         }
     });
 
     function showLoadingAndRedirect(url) {
-        console.log('Loading...');
-        setTimeout(function() {
+        document.body.insertAdjacentHTML('beforeend', `
+            <div id="loadingContainer" class="loading-container">
+                <div class="loading-animation"></div>
+            </div>
+        `);
+        setTimeout(() => {
             window.location.href = url;
         }, 3000); 
     }
