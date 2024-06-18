@@ -691,7 +691,6 @@ label {
     background-color: #365899;
 }
 
-/* ------------------------- BODY --------------------------------*/
 
 .events-section {
     text-align: center;
@@ -699,7 +698,7 @@ label {
 }
 
 .upcoming-events {
-    background-color: #b6d1fa; /* Light blue background */
+    background-color: #b6d1fa; 
 }
 
 .previous-events {
@@ -760,7 +759,7 @@ label {
 }
 
 .previous-events h3 .event-card p {
-    color: rgb(0, 0, 0); /* White text color for previous events */
+    color: rgb(0, 0, 0); 
 }
 
 .event-card a {
