@@ -413,11 +413,9 @@ footer p {
     text-decoration: underline;
 }
 
-
-
 .contact-section {
     flex: 1;
-    margin-left: 0;
+    margin-left: 0; 
     text-align: left;
     margin-top: 10px;
 }
@@ -506,7 +504,6 @@ footer p {
     background-color: #0b2e63;
 }
 
-
 .switch-container {
     display: flex;
     position: relative; 
@@ -551,7 +548,6 @@ footer p {
     margin-top: -13px;
     margin-left: -10px;
 }
-
 
 #userSwitch {
     font-size: 20px;
@@ -623,4 +619,30 @@ footer p {
 
 .passkey-title {
     margin-left: 20px; 
+}
+
+.passkey-title {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-left: 10px; 
+}
+
+.lock-icon {
+    width: 24px; 
+    height: 24px; 
+}
+
+.passkey-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px; 
+}
+
+.passkey-digit {
+    width: 30px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
 }
