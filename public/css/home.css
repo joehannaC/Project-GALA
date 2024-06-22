@@ -282,7 +282,7 @@ footer p {
     color: #333; 
     padding: 10px 0; 
 }
-
+ 
 .content-container {
     max-width: 800px;
     margin: 20px auto;
@@ -325,4 +325,12 @@ footer p {
 .program-description {
     font-weight: 10;
     font-size: 16px;
+}
+
+.reports-dropdown {
+    margin-left: 40px; 
+}
+
+.contact-dropdown {
+    margin-left: -20px; 
 }
