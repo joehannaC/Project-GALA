@@ -722,10 +722,10 @@ label {
 
 .background-container {
     position: relative;
-    background: url('../images/background_blue.png') no-repeat center center;
+    background: url('../UI/images/background_blue.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
-    color: white;
+    color: black;
     padding: 20px;
     text-align: left;
 }
@@ -738,6 +738,7 @@ label {
 .journey-content p {
     text-align: justify;
     margin: 25px 10px;
+    color: black;
 }
 
 .journey-container h1 {
@@ -755,7 +756,7 @@ label {
 }
 
 .journey-content {
-    background: hsl(216, 61%, 49%, 0.5);
+    background: hsl(216, 61%, 49%, 1);
     padding: 20px;
     border-radius: 10px;
     margin: 0px;
