@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Gala</title>
-    <link rel="stylesheet" href="css/home-default.css">
+    <link rel="stylesheet" href="home-default.css">
 </head>
 <body>
     <header>
-        <img src="images/gala-logo.png" alt="Project GALA Logo" class="logo">
+        <img src="../UI/images/gala-logo.png" alt="Project GALA Logo" class="logo">
         <div id="datetime"></div>
     </header>
 
@@ -35,12 +35,15 @@
                 <a href="#" data-arrow>REPORTS AND PUBLICATIONS</a>
                 <div class="dropdown-content reports-dropdown"> 
                     <a href="#">FEATURED STORIES</a>
+                    <a href="#">ANNUAL REPORTS</a>
                     <a href="#">MULTIMEDIA RESOURCES</a>
                 </div>
             </li>
             <li class="dropdown">
                 <a href="#" data-arrow>CONTACT</a>
                 <div class="dropdown-content contact-dropdown"> 
+                    <a href="#">PARTNER WITH US</a>
+                    <a href="#">VOLUNTEER WITH US</a>
                     <a href="#">CONTACT US</a>
                     <a href="#">GET IN TOUCH</a>
                 </div>
@@ -50,19 +53,19 @@
     
     <div class="slideshow-container">
         <div class="mySlides fade">
-            <img src="images/Give. Share. Be an Advocate.png" style="width:100%">
+            <img src="../UI/images/Give. Share. Be an Advocate.png" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="images/Educational.png" style="width:100%">
+            <img src="../UI/images/Educational.png" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="images/Community Outreach.png" style="width:100%">
+            <img src="../UI/images/Community Outreach.png" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="images/Advocacy.png" style="width:100%">
+            <img src="../UI/images/Advocacy.png" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="images/Volunteer Engagement.png" style="width:100%">
+            <img src="../UI/images/Volunteer Engagement.png" style="width:100%">
         </div> 
 
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -73,7 +76,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="passkey-title">
-                <img src="images/pin_lock.png" alt="Lock Icon" class="lock-icon" id="lockIcon"> Enter Pin
+                <img src="../UI/images/pin_lock.png" alt="Lock Icon" class="lock-icon" id="lockIcon"> Enter Pin
             </h2>
             <div class="passkey-input">
                 <input type="text" maxlength="1" id="digit1" class="passkey-digit">
@@ -90,10 +93,35 @@
         <div class="switch-pill" id="adminSwitch">Admin</div>
     </div>
   
+    <div class="chatbot-container">
+        <div class="chatbot-circle" id="chatbot-circle">
+            <img src="../UI/images/logo.png" alt="Chatbot Icon">
+        </div>
+        <div class="chatbox" id="chatbox">
+            <div class="chatbox-header">
+                <div class="chatbox-message bot-message">
+                    <img src="../UI/images/logo.png" alt="Bot">
+                </div>
 
+                <span class="chatbox-title">Project GALA Concierge</span>
+                <button class="chatbox-close" id="chatbox-close">&times;</button>
+            </div>
+            <div class="chatbox-body">
+                <div class="chatbox-messages" id="chatbox-messages">
+                    <div class="chatbox-message bot-message">
+                        <img src="../UI/images/logo.png" alt="Bot">
+                        <span>Welcome to Project GALA Concierge! What can I help you with?</span>
+                    </div>
+                </div>
+                <div class="chatbox-input-container">
+                    <input type="text" class="chatbox-input" id="chatbox-input" placeholder="Type your message">
+                </div>
+            </div>
+        </div>
+    </div>
     <footer>
         <div class="footer-content">
-            <img src="images/logo.png" alt="Footer Logo" class="footer-logo">
+            <img src="../UI/images/logo.png" alt="Footer Logo" class="footer-logo">
             <div class="footer-description">
                 <p>Project G.A.L.A. (Give A Love Anywhere) is a private, non-profit, non-partisan, and non-government organization that strongly advocates for an inclusive society through transformative education.</p>
             </div>
@@ -118,7 +146,7 @@
                 <div class="follow-connect">
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/GAlAProject"><img src="images/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.facebook.com/GAlAProject"><img src="../UI/images/facebook.png" alt="Facebook"></a>
                     </div>                
                 </div>
             </div>
@@ -128,6 +156,6 @@
         </div>
     </footer>
     
-    <script src="js/home-default.js"></script>
+    <script src="home-default.js"></script>
 </body>
 </html>
