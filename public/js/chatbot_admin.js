@@ -117,5 +117,5 @@ function getBotResponse(userMessage) {
 }
 
 function cancelAdd() {
-    window.location.href = "home.html";
+    window.location.href = "home_admin.html";
 }
