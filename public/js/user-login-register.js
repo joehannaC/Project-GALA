@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log(data);
-            window.location.href = "home.html";
+            window.location.href = "User.html";
             loginForm.reset();
         })
         .catch(error => {
