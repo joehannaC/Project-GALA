@@ -96,10 +96,10 @@ function displayAlbum(album) {
         </div>
         <div class="album-actions">
             <button onclick="deleteAlbum('${albumId}')">
-                <img src="delete.png" alt="Delete" style="width: 15px; height: 15px;" title="Delete">
+                <img src="images/delete.png" alt="Delete" style="width: 15px; height: 15px;" title="Delete">
             </button>
             <button onclick="editAlbum('${albumId}')">
-                <img src="edit.png" alt="Edit" style="width: 15px; height: 15px;" title="Edit">
+                <img src="images/edit.png" alt="Edit" style="width: 15px; height: 15px;" title="Edit">
             </button>
         </div>
     `;
@@ -214,10 +214,10 @@ function cancelEdit(albumId) {
     const albumActions = albumElement.querySelector('.album-actions');
     albumActions.innerHTML = `
         <button onclick="deleteAlbum('${albumId}')">
-            <img src="delete.png" alt="Delete" style="width: 15px; height: 15px;" title="Delete">
+            <img src="images/delete.png" alt="Delete" style="width: 15px; height: 15px;" title="Delete">
         </button>
         <button onclick="editAlbum('${albumId}')">
-            <img src="edit.png" alt="Edit" style="width: 15px; height: 15px;" title="Edit">
+            <img src="images/edit.png" alt="Edit" style="width: 15px; height: 15px;" title="Edit">
         </button>`;
 
     delete originalAlbumDetails[albumId];
@@ -239,10 +239,10 @@ function saveAlbum(albumId) {
     const albumActions = albumElement.querySelector('.album-actions');
     albumActions.innerHTML = `
         <button onclick="deleteAlbum('${albumId}')">
-            <img src="delete.png" alt="Delete" style="width: 15px; height: 15px; margin-top:15px" title="Delete">
+            <img src="images/delete.png" alt="Delete" style="width: 15px; height: 15px; margin-top:15px" title="Delete">
         </button>
         <button onclick="editAlbum('${albumId}')">
-            <img src="edit.png" alt="Edit" style="width: 15px; height: 15px; margin-top:15px" title="Edit">
+            <img src="images/edit.png" alt="Edit" style="width: 15px; height: 15px; margin-top:15px" title="Edit">
         </button>`;
 
 
