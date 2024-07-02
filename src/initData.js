@@ -19,7 +19,7 @@ const createUser = `
 const createQuestionAnswer = `
     CREATE TABLE IF NOT EXISTS qa (
         qaID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        Question VARCHAR(255),
+        Question VARCHAR(255) UNIQUE,
         Answer VARCHAR(255)
     )
 `;
