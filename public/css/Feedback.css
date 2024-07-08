@@ -499,10 +499,34 @@ footer p {
 
 /* ------------------------------------------- BODY --------------------------------------------*/
 
+.background-container {
+    position: relative;
+    background: url('../images/background_blue.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    padding: 30px;
+    text-align: left;
+    flex: 1 0 auto;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+}
+
 .testimonials {
     text-align: center;
-    padding: 50px 20px;
-    background-color: #f9f9f9;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 100%;
+    
 }
 
 .testimonials h2 {
@@ -515,6 +539,8 @@ footer p {
     font-size: 1.2em;
     color: #666;
     margin-bottom: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .testimonial-container {
