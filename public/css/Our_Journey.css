@@ -529,27 +529,30 @@ footer p {
 
 .background-container {
     position: relative;
-    background: url('../UI/images/background_blue.png') no-repeat center center;
+    background: url('../images/background_blue.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
-    color: black;
+    color: white;
     padding: 20px;
     text-align: left;
+    flex: 1 0 auto;
 }
 
 .journey-container {
     margin: 0 20px;
+    color: white;
     margin-bottom: 20px;
 }
 
 .journey-content p {
     text-align: justify;
     margin: 25px 10px;
-    color: black;
+    color: white;
 }
 
 .journey-container h1 {
     font-size: 2.5em;
+    color: white;
     margin-top: -0.5%;
 }
 
@@ -563,7 +566,7 @@ footer p {
 }
 
 .journey-content {
-    background: hsl(216, 61%, 49%, 1);
+    background: hsl(216, 61%, 49%, 0.8);
     padding: 20px;
     border-radius: 10px;
     margin: 0px;

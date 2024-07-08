@@ -527,13 +527,16 @@ footer p {
 .mission-icon, .vision-icon, .purpose-icon {
     background-color: rgba(54, 89, 155, 0.5);
     border-radius: 15px;
-    padding: 20px;
+    width: 250px;
+    height: 200px;
+    padding: 10px;
     display: inline-block;
     margin-bottom: 20px;
 }
 
 .mission-icon img, .vision-icon img, .purpose-icon img {
-    width: 100px;
+    width: 200px;
+    height: 200px;
     display: block;
     margin: 0 auto;
 }
