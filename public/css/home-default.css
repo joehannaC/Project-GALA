@@ -504,65 +504,63 @@ footer p {
     background-color: #0b2e63;
 }
 
-.switch-container {
+/* ----------------------------------------- SWITCH BUTTON -----------------------------------------------*/
+
+.switch-wrapper {
     display: flex;
-    position: relative; 
-    background-color: #87b5fa; 
-    border-radius: 50px; 
-    overflow: hidden; 
-    height: 30px; 
-    padding: 20px; 
+    justify-content: center;
     margin-top: -30px;
-    width: 15%;
-    margin-left: 800px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
-.switch-container button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    outline: none;
-    border-radius: 30px;
+.switch-container {
+    display: flex;
+    position: relative;
+    border: 3px solid #184D9D;
+    background-color: #87b5fa;
+    border-radius: 50px;
+    overflow: hidden;
+    height: 40px;
+    width: 300px; 
+    padding: 5px;
 }
 
 .switch-pill {
     cursor: pointer;
-    padding: 20px 30px;
     color: black;
-    border-radius: 30px;
-    margin-top: -10px;
-    margin-left: 20px;
-    width: 180px;
-    background-color: #87b5fa; 
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex: 1;
 }
 
 .switch-pill.active {
     color: white;
-    background-color: #184D9D; 
-    height: 15px;
-    width: 200px;
-    margin-top: -13px;
-    margin-left: -10px;
+    background-color: #184D9D;
+    height: 50px; 
+    width: 100px; 
+    z-index: 1; 
 }
 
 #userSwitch {
     font-size: 20px;
-    margin-right: 10px; 
-    margin-left: 10px;
-    margin-top: -13px;
+    margin-top: -5px;
+    margin-left: -5px;
+    left: 10px;
 }
 
 #adminSwitch {
     font-size: 20px;
-    margin-right: 0; 
-    margin-left: 0;
-    margin-top: -13px;
+    margin-top: -5px;
+    margin-right: -7px; 
+    right: 10px;
 }
 
+/* --------------------------------------------------- MODAL -----------------------------------------*/
 .modal {
     display: none;
     position: fixed;
@@ -572,7 +570,6 @@ footer p {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
 
@@ -581,7 +578,9 @@ footer p {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 10%;
+    width: 80%;
+    max-width: 400px;
+    box-sizing: border-box;
     border-radius: 10px;
 }
 
@@ -599,52 +598,53 @@ footer p {
     cursor: pointer;
 }
 
-#passkeySubmit {
+.passkey-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lock-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.passkey-input-container {
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
-    margin-left: 60px;
 }
 
 .passkey-input {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    gap: 10px;
 }
 
 .passkey-digit {
     width: 40px;
     height: 40px;
-    font-size: 20px;
-    text-align: center;
-}
-
-.passkey-title {
-    margin-left: 20px; 
-}
-
-.passkey-title {
-    display: flex;
-    align-items: center;
-    gap: 10px; 
-    margin-left: 10px; 
-}
-
-.lock-icon {
-    width: 24px; 
-    height: 24px; 
-}
-
-.passkey-input {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px; 
-}
-
-.passkey-digit {
-    width: 30px;
-    height: 40px;
     font-size: 24px;
     text-align: center;
+    box-sizing: border-box;
+    flex: 1;
+    max-width: 50px;
+}
+
+#passkeySubmit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #184D9D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#passkeySubmit:hover {
+    background-color: #184D9D;
 }
 
 /* ----------------------------------------- chat bot -----------------------------------------------*/
