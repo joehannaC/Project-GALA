@@ -39,9 +39,6 @@
                 </div>
             </li>
             <li class="dropdown">
-                <a href="Feedback.html" data-arrow> FEEDBACK</a>
-            </li>
-            <li class="dropdown">
                 <a href="#" data-arrow>CONTACT</a>
                 <div class="dropdown-content contact-dropdown"> 
                     <a href="Contact-us_user.html">CONTACT US</a>
@@ -50,51 +47,70 @@
                     <a href="volunteer-with-us.html">VOLUNTEER WITH US</a>
                 </div>
             </li>
+            <li class="dropdown">
+                <a href="Feedback.html" data-arrow> FEEDBACK</a>
+            </li>
         </ul>
     </nav>
     
     <div class="slideshow-container">
         <div class="mySlides fade">
-            <img src="images/Give. Share. Be an Advocate.png" style="width:100%">
+            <a href="#">
+                <img src="images/Give. Share. Be an Advocate.png" style="width:100%">
+            </a>
         </div>
         <div class="mySlides fade">
-            <img src="images/Educational.png" style="width:100%">
+            <a href="#">
+                <img src="images/Educational.png" style="width:100%">
+            </a>
         </div>
         <div class="mySlides fade">
-            <img src="images/Community Outreach.png" style="width:100%">
+            <a href="#">
+                <img src="images/Community Outreach.png" style="width:100%">
+            </a>
         </div>
         <div class="mySlides fade">
-            <img src="images/Advocacy.png" style="width:100%">
+            <a href="#">
+                <img src="images/Advocacy.png" style="width:100%">
+            </a>
         </div>
         <div class="mySlides fade">
-            <img src="images/Volunteer Engagement.png" style="width:100%">
+            <a href="#">
+                <img src="images/Volunteer Engagement.png" style="width:100%">
+            </a>
         </div> 
-
+    
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
+    
+  
+    <div class="switch-wrapper">
+        <div class="switch-container">
+            <div class="switch-pill active" id="userSwitch">USER</div>
+            <div class="switch-pill" id="adminSwitch">ADMIN</div>
+        </div>
+    </div>
+    
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 class="passkey-title">
                 <img src="images/pin_lock.png" alt="Lock Icon" class="lock-icon" id="lockIcon"> Enter Pin
             </h2>
-            <div class="passkey-input">
-                <input type="text" maxlength="1" id="digit1" class="passkey-digit">
-                <input type="text" maxlength="1" id="digit2" class="passkey-digit">
-                <input type="text" maxlength="1" id="digit3" class="passkey-digit">
-                <input type="text" maxlength="1" id="digit4" class="passkey-digit">
+            <div class="passkey-input-container">
+                <div class="passkey-input">
+                    <input type="text" maxlength="1" id="digit1" class="passkey-digit">
+                    <input type="text" maxlength="1" id="digit2" class="passkey-digit">
+                    <input type="text" maxlength="1" id="digit3" class="passkey-digit">
+                    <input type="text" maxlength="1" id="digit4" class="passkey-digit">
+                </div>
             </div>
             <button id="passkeySubmit">Submit</button>
         </div>
-    </div>
-  
-    <div class="switch-container">
-        <div class="switch-pill active" id="userSwitch">User</div>
-        <div class="switch-pill" id="adminSwitch">Admin</div>
-    </div>
-  
+    </div>    
+
     <div class="chatbot-container">
         <div class="chatbot-circle" id="chatbot-circle">
             <img src="images/logo.png" alt="Chatbot Icon">
