@@ -1,71 +1,72 @@
-function updateDateTime() {
-    const now = new Date();
-    const options = { 
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
-    };
-    const formattedDateTime = now.toLocaleDateString('en-US', options);
-    document.getElementById('datetime').innerHTML = formattedDateTime;
-}
-
-setInterval(updateDateTime, 1000);
-updateDateTime();
 
 let slideIndex = 0;
-showSlides();
-  
-function showSlides() {
-    let slides = document.getElementsByClassName("mySlides");
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+    showSlides();
+    
+    function showSlides() {
+        let slides = document.getElementsByClassName("mySlides");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        slides[slideIndex-1].style.display = "block";  
+        setTimeout(showSlides, 5000); 
     }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    slides[slideIndex-1].style.display = "block";  
-    setTimeout(showSlides, 5000); 
-}
 
-function plusSlides(n) {
-    slideIndex += n;
-    let slides = document.getElementsByClassName("mySlides");
-    if (slideIndex > slides.length) {slideIndex = 1}
-    if (slideIndex < 1) {slideIndex = slides.length}
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+    function plusSlides(n) {
+        slideIndex += n;
+        let slides = document.getElementsByClassName("mySlides");
+        if (slideIndex > slides.length) {slideIndex = 1}
+        if (slideIndex < 1) {slideIndex = slides.length}
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slides[slideIndex-1].style.display = "block"; 
     }
-    slides[slideIndex-1].style.display = "block"; 
-}
+
 
 document.addEventListener("DOMContentLoaded", function() {
+
+    // Only update date and time if the datetime element exists
+    const datetimeElement = document.getElementById('datetime');
+    if (datetimeElement) {
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            };
+            const formattedDateTime = now.toLocaleDateString('en-US', options);
+            datetimeElement.innerHTML = formattedDateTime;
+        }
+        
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    }
+
     const dropdownItems = document.querySelectorAll("nav ul li");
     dropdownItems.forEach(item => {
         item.addEventListener("click", function() {
             this.classList.toggle("active");
         });
     });
-});
 
-const userSwitch = document.getElementById('userSwitch');
-const adminSwitch = document.getElementById('adminSwitch');
+    const userSwitch = document.getElementById('userSwitch');
+    const adminSwitch = document.getElementById('adminSwitch');
 
-userSwitch.addEventListener('click', () => {
-    userSwitch.classList.add('active');
-    adminSwitch.classList.remove('active');
-});
+    userSwitch.addEventListener('click', () => {
+        userSwitch.classList.add('active');
+        adminSwitch.classList.remove('active');
+    });
 
-adminSwitch.addEventListener('click', () => {
-    adminSwitch.classList.add('active');
-    userSwitch.classList.remove('active');
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+    adminSwitch.addEventListener('click', () => {
+        adminSwitch.classList.add('active');
+        userSwitch.classList.remove('active');
+    });
 
     const modal = document.getElementById('myModal');
-
-    const adminSwitch = document.getElementById('adminSwitch');
     const passkeyDigits = document.querySelectorAll('.passkey-digit');
     const lockIcon = document.getElementById('lockIcon');
-
     const span = document.getElementsByClassName('close')[0];
 
     adminSwitch.addEventListener('click', function() {
@@ -194,5 +195,3 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
-
-

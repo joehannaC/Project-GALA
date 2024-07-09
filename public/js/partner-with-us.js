@@ -32,3 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  '&organization-description=' + encodeURIComponent(description));
     });
 });
+
+function goBack() {
+    window.history.back();
+}
