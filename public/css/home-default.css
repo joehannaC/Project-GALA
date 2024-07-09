@@ -25,11 +25,59 @@ header {
     margin-left: 20px; 
 }
 
-#datetime {
-    font-size: 18px;
-    color: white; 
+.donate-button {
+    background-color: #4a82d8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
     margin-right: 20px;
     margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+    background-color: #e65a50;
+}
+
+.donate-container {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.donate-container h2 {
+    margin: 10px 0;
+}
+
+.donate-container .qr-code {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+}
+
+.close-donate {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-donate:hover {
+    color: black;
 }
 
 nav {

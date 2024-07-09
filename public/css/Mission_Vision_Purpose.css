@@ -554,8 +554,10 @@ footer p {
 }
 
 .mission p, .vision p, .purpose p {
+    margin: 15px;
     font-size: 1em;
     line-height: 1.5;
+    text-align: justify;
 }
 
 .vertical-line {

@@ -496,6 +496,7 @@ footer p {
     height: 30px;
 }
 
+/* ----------------------------------------------------- BODY -----------------------------*/
 
 .founders-container {
     margin: 40px;
@@ -516,7 +517,14 @@ footer p {
     width: 50%;
 }
 
+.founders-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 .founder {
+    flex: 0 0 48%;
     display: flex;
     align-items: flex-start;
     padding: 20px;
@@ -546,18 +554,43 @@ footer p {
     display: inline-block;
 }
 
+.founder-description-container {
+    position: relative;
+}
 
 .founder-description {
-    height: 200px;
+    max-height: 200px;
+    min-height: 200px;
     color: white;
     background-color: hsl(216, 61%, 49%, 0.5);
-    padding: 10px;
+    padding: 10px 20px;
     margin-left: 20px;
-    margin-top:-10px;
+    margin-top: -10px;
     border-radius: 10px;
-    word-wrap: break-word; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: normal;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    text-align: justify;
 }
+
+
+.show-more {
+    display: none;
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    cursor: pointer;
+    background-color: hsl(216, 61%, 49%, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.show-more.rotate {
+    transform: rotate(180deg);
+}
+
+
 
