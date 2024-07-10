@@ -111,7 +111,7 @@ function highlightTab(evt) {
         menuItems[i].className = menuItems[i].className.replace(" active", "");
     }
     evt.currentTarget.className += " active";
-    
+
     if (evt.currentTarget.id === "edit-profile-tab") {
         document.getElementById("contact-number").removeAttribute("readonly");
         document.getElementById("email-address").removeAttribute("readonly");
@@ -120,6 +120,12 @@ function highlightTab(evt) {
         document.getElementById("career").removeAttribute("readonly");
         document.getElementById("passions").removeAttribute("readonly");
         document.getElementById("skills").removeAttribute("readonly");
+
+        document.getElementById("edit-buttons-volunteer").style.display = "block";
+        document.getElementById("edit-buttons-details").style.display = "block";
+        document.getElementById("edit-buttons-contact").style.display = "block";
+        document.getElementById("profile-pic-upload").style.display = "block"; // Show profile pic upload button
+        document.getElementById("add-skill-btn").style.display = "inline"; 
     } else {
         document.getElementById("contact-number").setAttribute("readonly", true);
         document.getElementById("email-address").setAttribute("readonly", true);
@@ -128,8 +134,26 @@ function highlightTab(evt) {
         document.getElementById("career").setAttribute("readonly", true);
         document.getElementById("passions").setAttribute("readonly", true);
         document.getElementById("skills").setAttribute("readonly", true);
+
+        document.getElementById("edit-buttons-volunteer").style.display = "none";
+        document.getElementById("edit-buttons-details").style.display = "none";
+        document.getElementById("edit-buttons-contact").style.display = "none";
+        document.getElementById("profile-pic-upload").style.display = "none"; // Hide profile pic upload button
+        document.getElementById("add-skill-btn").style.display = "none"; 
     }
 }
+
+
+
+function addSkill() {
+    var skillsContainer = document.getElementById("skills-container");
+    var newSkillInput = document.createElement("input");
+    newSkillInput.type = "text";
+    newSkillInput.placeholder = "Add another skill";
+    skillsContainer.appendChild(newSkillInput);
+    skillsContainer.appendChild(document.getElementById("add-skill-btn"));
+}
+
 
 // Ensure the PERSONAL tab is highlighted by default
 document.getElementById("personal-tab").click();
