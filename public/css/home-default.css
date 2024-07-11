@@ -552,6 +552,52 @@ footer p {
     background-color: #0b2e63;
 }
 
+.content-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.content-container h1 {
+    margin-top: 50px;
+    font-size: 34px;
+    font-weight: bold;
+    color: #22529b; 
+}
+
+.content-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333; 
+}
+
+.programs {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+.programs img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.program-item {
+    text-align: center;
+    margin: 30px 20px; 
+    max-width: 200px; 
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.program-description {
+    font-weight: 10;
+    font-size: 16px;
+}
+
+
 /* ----------------------------------------- SWITCH BUTTON -----------------------------------------------*/
 
 .switch-wrapper {
@@ -839,4 +885,13 @@ footer p {
 
 .bot-timestamp {
     text-align: left;
+}
+
+
+.reports-dropdown {
+    margin-left: 40px; 
+}
+
+.contact-dropdown {
+    margin-left: -20px; 
 }
