@@ -783,7 +783,7 @@ label {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: left;
-    width: 300px;
+    width: 22%; /* Adjust the width to fit four cards in a row */
     position: relative;
     transition: transform 0.3s ease;
 }
@@ -822,7 +822,7 @@ label {
 }
 
 .previous-events h3 .event-card p {
-    color: rgb(0, 0, 0); /* White text color for previous events */
+    color: rgb(0, 0, 0); 
 }
 
 .event-card a {
