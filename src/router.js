@@ -256,10 +256,21 @@ router.post('/addContact', async (req, res) => {
     try {
         const { address, number, network, email, images, schedule } = req.body;
 
-        const insertContactQuery = 'INSERT INTO contact (Address, Phone, Network, Email, ImagePath) VALUES (?, ?, ?, ?, ?)';
-        const result  = await query(insertContactQuery, [address, number, network, email, images]);
-        const contactId = result.insertId;
+        const checkContactQuery = 'SELECT ContactID FROM contact LIMIT 1';
+        const rows = await query(checkContactQuery);
 
+        let contactId;
+        if (rows.length > 0) {
+            contactId = rows[0].ContactID;
+            const updateContactQuery = 'UPDATE contact SET Address = ?, Phone = ?, Network = ?, Email = ?, ImagePath = ? WHERE ContactID = ?';
+            await query(updateContactQuery, [address, number, network, email, images, contactId]);
+            const deleteBusinessHoursQuery = 'DELETE FROM business_hours WHERE ContactID = ?';
+            await query(deleteBusinessHoursQuery, [contactId]);
+        } else {
+            const insertContactQuery = 'INSERT INTO contact (Address, Phone, Network, Email, ImagePath) VALUES (?, ?, ?, ?, ?)';
+            const result  = await query(insertContactQuery, [address, number, network, email, images]);
+            contactId = result.insertId;
+        }
         const insertBusinessHoursQuery = 'INSERT INTO business_hours (ContactID, Day, StartTime, EndTime) VALUES (?, ?, ?, ?)';
         const businessHoursPromises = schedule.day.map((day, index) => {
             const startTime = schedule.start[index];
