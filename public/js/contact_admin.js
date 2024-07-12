@@ -4,6 +4,31 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateDateTime, 1000);
     updateDateTime();
     setupImageUploadPreview()
+    fetch('/getContact')
+        .then(response => response.json())
+        .then(data => {
+            if (data.contact) {
+                document.getElementById('address').value = data.contact.Address;
+                document.getElementById('contactNumber').value = data.contact.Phone;
+                document.getElementById('networkCategory').value = data.contact.Network;
+                document.getElementById('email').value = data.contact.Email;
+
+                const businessHours = data.businessHours;
+                businessHours.forEach(hour => {
+                    document.getElementById(hour.Day).checked = true;
+                    document.getElementById(`${hour.Day}-start-time`).value = hour.StartTime;
+                    document.getElementById(`${hour.Day}-end-time`).value = hour.EndTime;
+                });
+
+                if (data.contact.ImagePath) {
+                    const imagePath = data.contact.ImagePath;
+                    document.getElementById('uploaded-photo').src = imagePath;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching contact:', error);
+        });
 });
 
 function updateDateTime() {
@@ -62,29 +87,43 @@ function addContactInfo() {
         schedule: schedule
     };
 
-    const formData = new FormData();
-    formData.append('image', selectedFile);
+    const uploadImageAndSaveContact = () => {
+        if (selectedFile) {
+            const formData = new FormData();
+            formData.append('image', selectedFile);
 
-    fetch('/uploadImage', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to upload image');
+            return fetch('/uploadImage', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to upload image');
+                }
+                return response.json();
+            })
+            .then(data => {
+                contact.images.push(data.imagePath);
+                return fetch('/addContact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(contact)
+                });
+            });
+        } else {
+            return fetch('/addContact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(contact)
+            });
         }
-        return response.json();
-    })
-    .then(data => {
-        contact.images.push(data.imagePath);
-        return fetch('/addContact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(contact)
-        });
-    })
+    };
+
+    uploadImageAndSaveContact()
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to save contact');
@@ -99,6 +138,25 @@ function addContactInfo() {
     .catch(error => {
         console.error('Error saving contact:', error);
     });
+}
+
+function loadContact() {
+    fetch('/allContacts')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch stories');
+            }
+            return response.json();
+        })
+        .then(data => {
+            stories = data.stories;
+            stories.forEach(story => {
+                displayStory(story);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading stories:', error);
+        });
 }
 
 function handleFileSelect(event) {
@@ -127,19 +185,3 @@ function handleFileSelect(event) {
         reader.readAsDataURL(file);
     }
 }
-
-// const saveButton = document.querySelector('.save-button');
-
-// saveButton.addEventListener('click', function() {
-    
-//     const addressValue = document.getElementById('address').value.trim();
-//     const businessHoursValue = document.getElementById('business-hours').value.trim();
-//     const contactNumberValue = document.getElementById('contact-number').value.trim();
-//     const emailValue = document.getElementById('email').value.trim();
-
-//     if (addressValue || businessHoursValue || contactNumberValue || emailValue) {
-//         alert('Changes saved successfully!');
-//     } else {
-//         alert('No changes made.');
-//     }
-// });
