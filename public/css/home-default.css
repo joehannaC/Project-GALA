@@ -552,6 +552,7 @@ footer p {
     background-color: #0b2e63;
 }
 
+
 .content-container {
     max-width: 800px;
     margin: 20px auto;
@@ -885,13 +886,4 @@ footer p {
 
 .bot-timestamp {
     text-align: left;
-}
-
-
-.reports-dropdown {
-    margin-left: 40px; 
-}
-
-.contact-dropdown {
-    margin-left: -20px; 
 }
