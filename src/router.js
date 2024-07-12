@@ -254,10 +254,19 @@ router.post('/addAlbum', async (req, res) => {
 
 router.post('/addContact', async (req, res) => {
     try {
-        const { address, number, network, email, images } = req.body;
+        const { address, number, network, email, images, schedule } = req.body;
 
         const insertContactQuery = 'INSERT INTO contact (Address, Phone, Network, Email, ImagePath) VALUES (?, ?, ?, ?, ?)';
-        await query(insertContactQuery, [address, number, network, email, images]);
+        const result  = await query(insertContactQuery, [address, number, network, email, images]);
+        const contactId = result.insertId;
+
+        const insertBusinessHoursQuery = 'INSERT INTO business_hours (ContactID, Day, StartTime, EndTime) VALUES (?, ?, ?, ?)';
+        const businessHoursPromises = schedule.day.map((day, index) => {
+            const startTime = schedule.start[index];
+            const endTime = schedule.end[index];
+            return query(insertBusinessHoursQuery, [contactId, day, startTime, endTime]);
+        });
+        await Promise.all(businessHoursPromises);
 
         res.json({ success: true });
     } catch (err) {
