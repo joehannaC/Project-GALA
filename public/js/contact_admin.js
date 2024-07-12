@@ -36,34 +36,30 @@ function addContactInfo() {
     const contactNetwork = document.getElementById('networkCategory').value;
     const contactEmail = document.getElementById('email').value;
 
-    const monday = document.getElementById('monday').value;
-    const mondayStartTime = document.getElementById('monday-start-time').value;
-    const mondayEndTime = document.getElementById('monday-end-time').value;
-    const tuesday = document.getElementById('tuesday').value;
-    const tuesdayStartTime = document.getElementById('tuesday-start-time').value;
-    const tuesdayEndTime = document.getElementById('tuesday-end-time').value;
-    const wednesday = document.getElementById('wednesday').value;
-    const wednesdayStartTime = document.getElementById('wednesday-start-time').value;
-    const wednesdayEndTime = document.getElementById('wednesday-end-time').value;
-    const thursday = document.getElementById('thursday').value;
-    const thursdayStartTime = document.getElementById('thursday-start-time').value;
-    const thursdayEndTime = document.getElementById('thursday-end-time').value;
-    const friday = document.getElementById('friday').value;
-    const fridayStartTime = document.getElementById('friday-start-time').value;
-    const fridayEndTime = document.getElementById('friday-end-time').value;
-    const saturday = document.getElementById('saturday').value;
-    const saturdayStartTime = document.getElementById('saturday-start-time').value;
-    const saturdayEndTime = document.getElementById('saturday-end-time').value;
-    const sunday = document.getElementById('sunday').value;
-    const sundayStartTime = document.getElementById('sunday-start-time').value;
-    const sundayEndTime = document.getElementById('sunday-end-time').value;
+    const schedule = {
+        day: [],
+        start: [],
+        end: []
+    };
+
+    document.querySelectorAll('.day-checkbox input[type="checkbox"]').forEach(checkbox => {
+        if (checkbox.checked) {
+            const day = checkbox.id;
+            const startTime = document.getElementById(`${day}-start-time`).value;
+            const endTime = document.getElementById(`${day}-end-time`).value;
+            schedule.day.push(day);
+            schedule.start.push(startTime);
+            schedule.end.push(endTime);
+        }
+    });
 
     const contact = {
         address: contactAddress,
         number: contactNumber,
         network: contactNetwork,
         email: contactEmail,
-        images: []
+        images: [],
+        schedule: schedule
     };
 
     const formData = new FormData();
