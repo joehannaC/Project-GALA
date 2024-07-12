@@ -95,10 +95,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('passkeySubmit').addEventListener('click', function() {
         const passkey = Array.from(passkeyDigits).map(input => input.value).join('');
         if (passkey === '1234') {
-            lockIcon.src = '../UI/images/pin_unlocked.png';
-            showLoadingAndRedirect('index.html');
+            lockIcon.src = '../public/images/pin_unlocked.png';
+            showLoadingAndRedirect('../public/index_admin.html');
         } else {
-            lockIcon.src = '../UI/images/pin_lock.png';
+            lockIcon.src = '../public/images/pin_lock.png';
             passkeyDigits.forEach(input => input.value = '');
             passkeyDigits[0].focus();
             alert('Incorrect pin. Please try again.');
