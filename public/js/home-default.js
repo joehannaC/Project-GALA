@@ -195,3 +195,40 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+
+let testimonialIndex = 0;
+let currentSlideDirection = "right"; // Track the direction of the slide
+
+showTestimonial(testimonialIndex, currentSlideDirection);
+
+function plusSlides(n) {
+    currentSlideDirection = n > 0 ? "right" : "left";
+    showTestimonial(testimonialIndex += n, currentSlideDirection);
+}
+
+function showTestimonial(n, direction) {
+    const testimonials = document.getElementsByClassName("testimonial");
+    if (n >= testimonials.length) {
+        testimonialIndex = 0;
+    }
+    if (n < 0) {
+        testimonialIndex = testimonials.length - 1;
+    }
+    for (let i = 0; i < testimonials.length; i++) {
+        testimonials[i].classList.remove("slide-in-left", "slide-in-right", "slide-out-left", "slide-out-right");
+        testimonials[i].style.display = "none";
+    }
+
+    if (direction === "right") {
+        testimonials[testimonialIndex].style.display = "flex";
+        testimonials[testimonialIndex].classList.add("slide-in-right");
+    } else {
+        testimonials[testimonialIndex].style.display = "flex";
+        testimonials[testimonialIndex].classList.add("slide-in-left");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    showTestimonial(testimonialIndex, currentSlideDirection);
+});
+
