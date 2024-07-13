@@ -639,6 +639,14 @@ footer p {
     flex: 1 0 auto;
 }
 
+.program-image {
+    border: 5px solid #4a82d8; 
+    border-radius: 50px; 
+    padding: 5px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
 .content-wrapper {
     margin: 0 auto;
     padding: 20px;
@@ -837,3 +845,164 @@ footer p {
 .bot-timestamp {
     text-align: left;
 }
+
+/* ---------------------------------------- FEED BACK --------------------*/
+.testimonial-section {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    margin-bottom: 40px; /* Add some spacing before the footer */
+    border-radius: 20px; /* Optional: To match the rounded container in your example */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: For a subtle shadow */
+}
+
+.testimonial-section h2 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.testimonial-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.testimonial-button {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #0078d4;
+    margin: 0 10px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.testimonial-button.prev {
+    left: 0;
+}
+
+.testimonial-button.next {
+    right: 0;
+}
+
+.testimonial-button:hover {
+    color: #005f7a;
+    border-radius: 50%;
+}
+
+.testimonial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 1s forwards;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 1s forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 1s forwards;
+}
+
+.slide-out-right {
+    animation: slideOutRight 1s forwards;
+}
+
+.testimonial-image {
+    border-radius: 20px;
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 30px;
+}
+
+.testimonial-text {
+    text-align: left;
+}
+
+.testimonial-quote {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+    padding: 0 20px;
+    line-height: 1.5;
+    position: relative;
+}
+
+.testimonial-quote::before {
+    content: '“';
+    font-size: 40px;
+    color: #0078d4;
+    position: absolute;
+    left: -20px;
+    top: -10px;
+}
+
+.testimonial-author {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #777;
+    padding-left: 20px;
+    border-top: 1px solid #0078d4;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+
+
