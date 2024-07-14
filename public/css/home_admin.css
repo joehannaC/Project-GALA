@@ -21,6 +21,7 @@ header {
     background-attachment: fixed;
     color: white;
     text-align: left;
+    margin-top: -20px;
     flex: 1 0 auto;
 }
 
