@@ -1,28 +1,28 @@
 
 let slideIndex = 0;
-    showSlides();
-    
-    function showSlides() {
-        let slides = document.getElementsByClassName("mySlides");
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}    
-        slides[slideIndex-1].style.display = "block";  
-        setTimeout(showSlides, 5000); 
-    }
+showSlides();
 
-    function plusSlides(n) {
-        slideIndex += n;
-        let slides = document.getElementsByClassName("mySlides");
-        if (slideIndex > slides.length) {slideIndex = 1}
-        if (slideIndex < 1) {slideIndex = slides.length}
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        slides[slideIndex-1].style.display = "block"; 
+function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
     }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].style.display = "block";  
+    setTimeout(showSlides, 5000); 
+}
+
+function plusSlides(n) {
+    slideIndex += n;
+    let slides = document.getElementsByClassName("mySlides");
+    if (slideIndex > slides.length) {slideIndex = 1}
+    if (slideIndex < 1) {slideIndex = slides.length}
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slides[slideIndex-1].style.display = "block"; 
+}
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -197,13 +197,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 let testimonialIndex = 0;
-let currentSlideDirection = "right"; // Track the direction of the slide
+let currentTestimonialDirection = "right";
 
-showTestimonial(testimonialIndex, currentSlideDirection);
+showTestimonial(testimonialIndex, currentTestimonialDirection);
 
-function plusSlides(n) {
-    currentSlideDirection = n > 0 ? "right" : "left";
-    showTestimonial(testimonialIndex += n, currentSlideDirection);
+function plusTestimonials(n) {
+    currentTestimonialDirection = n > 0 ? "right" : "left";
+    showTestimonial(testimonialIndex += n, currentTestimonialDirection);
 }
 
 function showTestimonial(n, direction) {
@@ -228,7 +228,23 @@ function showTestimonial(n, direction) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    showTestimonial(testimonialIndex, currentSlideDirection);
-});
+function showDonateModal() {
+    document.getElementById('donateModal').style.display = 'block';
+}
+
+function closeDonateModal() {
+    document.getElementById('donateModal').style.display = 'none';
+}
+
+function showImage(type) {
+    var donationImage = document.getElementById('donationImage');
+    if (type === 'bank') {
+        donationImage.src = 'path/to/your/bank-image.png'; // Update with your bank image path
+    } else if (type === 'gcash') {
+        donationImage.src = 'path/to/your/gcash-image.png'; // Update with your Gcash image path
+    }
+    donationImage.style.display = 'block';
+}
+
+
 
