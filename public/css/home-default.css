@@ -646,8 +646,8 @@ footer p {
     background-size: cover;
     background-attachment: fixed;
     color: white;
-    padding: 30px;
     text-align: left;
+    margin-top: -20px;
     flex: 1 0 auto;
 }
 
