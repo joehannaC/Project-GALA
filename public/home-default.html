@@ -11,13 +11,25 @@
         <a href="home-default.html">
             <img src="images/gala-logo.png" alt="Project GALA Logo" class="logo">
         </a>
-        <button class="donate-button">DONATE NOW</button>
+        <button class="donate-button" onclick="showDonateModal()">DONATE NOW</button>
     </header>
 
-    <div id="donateContainer" class="donate-container">
-        <span class="close-donate">&times;</span>
-        <h2>Scan Me</h2>
-        <img src="images/qr-code.png" alt="QR Code" class="qr-code">
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDonateModal()">&times;</span>
+            <h2>Select Donation Method</h2>
+            <div class="modal-buttons">
+                <div class="donation-option" onclick="showImage('bank')">
+                    <img src="images/Donation/Bank.png" alt="Bank Image" class="donation-image">
+                    <div class="modal-label">Bank</div>
+                </div>
+                <div class="donation-option" onclick="showImage('gcash')">
+                    <img src="images/Donation/G-Cash.png" alt="Gcash Image" class="donation-image">
+                    <div class="modal-label">Gcash</div>
+                </div>
+            </div>
+            <img id="donationImage" src="" alt="Donation Image" style="display: none; margin-top: 20px; width: 100%;">
+        </div>
     </div>
 
     <nav>
@@ -152,36 +164,37 @@
                     </div>
                 </div>
             </div>
-        </div> 
-    </div>
-
-    <div class="content-wrapper testimonial-section">
-        <h2>FEEDBACK</h2>
-        <div class="testimonial-navigation">
-            <button class="testimonial-button prev" onclick="plusSlides(-1)">&#10094;</button>
-            <div class="testimonial" style="display: flex;">
-                <img src="images/founders/vo.jpg" alt="Dr. Wangari Maathai" class="testimonial-image">
-                <div class="testimonial-text">
-                    <p class="testimonial-quote">We must continue to encourage each other to be agents of change, and be among the small group of people who make things happen, rather than watch them happen.</p>
-                    <p class="testimonial-author">Dr. Wangari Maathai<br>Founder, Green Belt Movement<br>2004 Nobel Peace Prize Laureate</p>
-                </div>
-            </div>
-            <div class="testimonial" style="display: none;">
-                <img src="images/founders/vo.jpg" alt="Dr. Wangari Maathai" class="testimonial-image">
-                <div class="testimonial-text">
-                    <p class="testimonial-quote">Another testimonial quote here.</p>
-                    <p class="testimonial-author">Another Author<br>Another Title</p>
-                </div>
-            </div>
-            <div class="testimonial" style="display: none;">
-                <img src="images/founders/vo.jpg" alt="Dr. Wangari Maathai" class="testimonial-image">
-                <div class="testimonial-text">
-                    <p class="testimonial-quote">Yet another testimonial quote here.</p>
-                    <p class="testimonial-author">Yet Another Author<br>Yet Another Title</p>
-                </div>
-            </div>
-            <button class="testimonial-button next" onclick="plusSlides(1)">&#10095;</button>
         </div>
+
+        <div class="content-wrapper testimonial-section">
+            <h2>FEEDBACK</h2>
+            <div class="testimonial-navigation">
+                <button class="testimonial-button prev" onclick="plusTestimonials(-1)">&#10094;</button>
+                <div class="testimonial" style="display: flex;">
+                    <img src="images/founders/vo.jpg" alt="Dr. Wangari Maathai" class="testimonial-image">
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">We must continue to encourage each other to be agents of change, and be among the small group of people who make things happen, rather than watch them happen.</p>
+                        <p class="testimonial-author">Dr. Wangari Maathai<br>Founder, Green Belt Movement<br>2004 Nobel Peace Prize Laureate</p>
+                    </div>
+                </div>
+                <div class="testimonial" style="display: none;">
+                    <img src="images/founders/vo.jpg" alt="Dr. Wangari Maathai" class="testimonial-image">
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">Another testimonial quote here.</p>
+                        <p class="testimonial-author">Another Author<br>Another Title</p>
+                    </div>
+                </div>
+                <div class="testimonial" style="display: none;">
+                    <img src="images/founders/vo.jpg" alt="Dr. Wangari Maathai" class="testimonial-image">
+                    <div class="testimonial-text">
+                        <p class="testimonial-quote">Yet another testimonial quote here.</p>
+                        <p class="testimonial-author">Yet Another Author<br>Yet Another Title</p>
+                    </div>
+                </div>
+                <button class="testimonial-button next" onclick="plusTestimonials(1)">&#10095;</button>
+            </div>
+        </div>
+
     </div>
     
     <footer>
