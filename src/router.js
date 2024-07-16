@@ -17,12 +17,45 @@ router.get('/logout', async (req, res) => {
 
 router.get('/allUsers', async (req, res) => {
     try {
-        const userQuery = 'SELECT * FROM user';
-        const results = await query(userQuery);
+        const userQuery = 'SELECT * FROM user WHERE Role != ?';
+        const results = await query(userQuery, ['Admin']);
         res.json({ success: true, data: results });
     } catch (err) {
-        console.error('Error fetching Q&A:', err);
-        res.status(500).json({ success: false, message: 'An error occurred while fetching the Q&A' });
+        console.error('Error fetching users:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the users' });
+    }
+});
+
+router.get('/allVolunteers', async (req, res) => {
+    try {
+        const volunteerQuery = 'SELECT * FROM volunteer WHERE Status != ?';
+        const results = await query(volunteerQuery, ['Approved']);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching volunteers:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the volunteers' });
+    }
+});
+
+router.get('/allPartners', async (req, res) => {
+    try {
+        const partnerQuery = 'SELECT * FROM partner WHERE Status != ?';
+        const results = await query(partnerQuery, ['Approved']);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching partners:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the partners' });
+    }
+});
+
+router.get('/allGetInTouch', async (req, res) => {
+    try {
+        const getInTouchQuery = 'SELECT * FROM get_in_touch';
+        const results = await query(getInTouchQuery);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching get in touch:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching get in touch' });
     }
 });
 
@@ -49,7 +82,7 @@ router.get('/allStories', async (req, res) => {
         res.json({ success: true, stories: stories });
     } catch (err) {
         console.error('Error fetching stories:', err);
-        res.status(500).json({ success: false, message: 'An error occurred while fetching stories' });
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the stories' });
     }
 });
 
@@ -68,7 +101,7 @@ router.get('/allAlbums', async (req, res) => {
         res.json({ success: true, albums: albumsWithImages });
     } catch (err) {
         console.error('Error fetching albums:', err);
-        res.status(500).json({ success: false, message: 'An error occurred while fetching albums' });
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the albums' });
     }
 });
 
@@ -95,8 +128,8 @@ router.get('/getContact', async (req, res) => {
 router.post('/user/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const sql = 'SELECT * FROM user WHERE Email = ? AND Role = ?';
-        const results = await query(sql, [email, 'User']);
+        const sql = 'SELECT * FROM user WHERE Email = ? AND Role != ?';
+        const results = await query(sql, [email, 'Admin']);
         
         if (results.length === 0) {
             return res.status(401).send('Invalid email or password');
@@ -308,6 +341,32 @@ router.post('/addContact', async (req, res) => {
     }
 });
 
+router.put('/approveVolunteer/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateVolunteerQuery = 'UPDATE volunteer SET Status = ? WHERE VolunteerID = ?';
+        await query(updateVolunteerQuery, ['Approved', id]);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error approving volunteer:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while approving the volunteer' });
+    }
+});
+
+router.put('/approvePartner/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatePartnerQuery = 'UPDATE partner SET Status = ? WHERE PartnerID = ?';
+        await query(updatePartnerQuery, ['Approved', id]);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error approving partner:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while approving the partner' });
+    }
+});
+
 router.put('/editQA/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -354,6 +413,34 @@ router.put('/editAlbum/:id', async (req, res) => {
     } catch (err) {
         console.error('Error updating album:', err);
         res.status(500).json({ success: false, message: 'An error occurred while updating the album' });
+    }
+});
+
+router.delete('/deleteVolunteer/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deleteVolunteerQuery = 'DELETE FROM volunteer WHERE VolunteerID = ?';
+        await query(deleteVolunteerQuery, [id]);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error deleting volunteer:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while deleting the volunteer' });
+    }
+});
+
+router.delete('/deletePartner/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletePartnerQuery = 'DELETE FROM partner WHERE PartnerID = ?';
+        await query(deletePartnerQuery, [id]);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error deleting partner:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while deleting the partner' });
     }
 });
 
