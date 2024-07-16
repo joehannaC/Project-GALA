@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Gala</title>
     <link rel="stylesheet" href="css/home-default.css">
+    <link rel="stylesheet" href="css/iframe.css">
 </head>
 <body>
     <header>
@@ -99,33 +100,7 @@
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div> 
     
-        <div class="chatbot-container">
-            <div class="chatbot-circle" id="chatbot-circle">
-                <img src="images/logo.png" alt="Chatbot Icon">
-            </div>
-            <div class="chatbox" id="chatbox">
-                <div class="chatbox-header">
-                    <div class="chatbox-message bot-message">
-                        <img src="images/logo.png" alt="Bot">
-                    </div>
-    
-                    <span class="chatbox-title">Project GALA Concierge</span>
-                    <button class="chatbox-close" id="chatbox-close">&times;</button>
-                </div>
-                <div class="chatbox-body">
-                    <div class="chatbox-messages" id="chatbox-messages">
-                        <div class="chatbox-message bot-message">
-                            <img src="images/logo.png" alt="Bot">
-                            <span>Welcome to Project GALA Concierge! What can I help you with?</span>
-                        </div>
-                    </div>
-                    <div class="chatbox-input-container">
-                        <input type="text" class="chatbox-input" id="chatbox-input" placeholder="Type your message">
-                    </div>
-                </div>
-            </div>
-        </div>
-    
+        <iframe src="chatbot.html" class="popup-iframe"></iframe>
         
         <div class="content-wrapper">
             <div class="content-container">
