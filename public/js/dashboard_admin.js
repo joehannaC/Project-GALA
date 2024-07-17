@@ -1,3 +1,4 @@
+let visitorCounts = [];
 let isOverview = 1;
 let users = [];
 let partnerApplications = [];
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     loadContent('overview');
+    loadVisitorCount()
 });
 
 function loadContent(content) {
@@ -44,6 +46,23 @@ function loadContent(content) {
     } else if (content === 'getInTouch') { 
         loadGetInTouch();
     }
+}
+
+function loadVisitorCount() {
+    fetch('/getVisitorCount')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch visitor count');
+            }
+            return response.json();
+        })
+        .then(data => {
+            visitorCounts = data.data;
+            displayVisitorCount();
+        })
+        .catch(error => {
+            console.error('Error loading visitor count:', error);
+        });
 }
 
 function loadUsers() {
@@ -112,6 +131,17 @@ function loadGetInTouch() {
         .catch(error => {
             console.error('Error loading get in touch:', error);
         });
+}
+
+function displayVisitorCount() {
+    const websiteVisits = document.getElementById('website-visits');
+    websiteVisits.innerHTML = '';
+
+    visitorCounts.forEach(function(visitorCount) {
+        const visitCount = document.createElement('td');
+        visitCount.textContent = visitorCount.Count;
+        websiteVisits.appendChild(visitCount);
+    });
 }
 
 function displayUserList() {
