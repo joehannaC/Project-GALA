@@ -1,4 +1,4 @@
-/* CHATBOT*/
+/* Add this in chatbot.js */
 document.addEventListener("DOMContentLoaded", function() {
     const chatbotCircle = document.getElementById('chatbot-circle');
     const chatbox = document.getElementById('chatbox');
@@ -20,6 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
     chatboxClose.addEventListener('click', function() {
         chatbox.style.display = 'none'; 
         chatbotCircle.style.display = 'flex'; 
+        chatbotCircle.classList.add('pop-up-animation');
+
+        // Remove the animation class after the animation ends to reset it
+        chatbotCircle.addEventListener('animationend', function() {
+            chatbotCircle.classList.remove('pop-up-animation');
+        }, { once: true });
     });
 
     chatboxInput.addEventListener('keypress', function(event) {
@@ -68,6 +74,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         chatboxMessages.appendChild(timestampElement);
         chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+        // Add the pop-up animation class to the timestamp
+        timestampElement.classList.add('pop-up-animation');
+
+        // Remove the animation class after the animation ends to reset it
+        timestampElement.addEventListener('animationend', function() {
+            timestampElement.classList.remove('pop-up-animation');
+        }, { once: true });
 
         if (messageType === 'user') {
             previousUserTimestampElement = timestampElement;
