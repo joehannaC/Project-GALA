@@ -4,16 +4,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatboxClose = document.getElementById('chatbox-close');
     const chatboxInput = document.getElementById('chatbox-input');
     const chatboxMessages = document.getElementById('chatbox-messages');
+    const unreadIndicator = document.createElement('div');
+    unreadIndicator.classList.add('unread-indicator');
+    chatbotCircle.appendChild(unreadIndicator);
 
     let previousUserTimestampElement = null;
     let previousBotTimestampElement = null;
 
     chatbox.style.display = 'none';
     chatbotCircle.style.display = 'flex';
+    unreadIndicator.style.display = 'none';
 
     chatbotCircle.addEventListener('click', function() {
         chatbox.style.display = 'flex'; 
         chatbotCircle.style.display = 'none';
+        unreadIndicator.style.display = 'none';
     });
 
     chatboxClose.addEventListener('click', function() {
@@ -38,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             addTimestamp(chatboxMessages, 'user');
 
-            
             setTimeout(() => {
                 const botMessage = document.createElement('div');
                 botMessage.classList.add('chatbox-message', 'bot-message');
@@ -47,6 +51,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 
                 addTimestamp(chatboxMessages, 'bot');
+
+                if (chatbox.style.display === 'none') {
+                    showUnreadIndicator();
+                }
             }, 1000);
         }
     });
@@ -84,5 +92,9 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (messageType === 'bot') {
             previousBotTimestampElement = timestampElement;
         }
+    }
+
+    function showUnreadIndicator() {
+        unreadIndicator.style.display = 'block';
     }
 });
