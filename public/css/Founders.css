@@ -521,13 +521,6 @@ footer p {
 
 /* ----------------------------------------------------- BODY -----------------------------*/
 
-.background-container {
-    position: relative;
-    background-size: cover;
-    background-attachment: fixed;
-    text-align: left;
-    flex: 1 0 auto;
-}
 
 .founders-container {
     margin: 40px;
