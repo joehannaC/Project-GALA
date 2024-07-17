@@ -87,7 +87,7 @@ const createVisitorCount = `
 `;
 
 const initVisitorCount = `
-    INSERT IGNORE INTO visitor_count (Count) VALUES (0)
+    INSERT IGNORE INTO visitor_count (VisitorID, Count) VALUES (1, 0)
 `;
 
 const createVolunteer = `
