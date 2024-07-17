@@ -173,7 +173,7 @@ const adminData = [
 const volunteerData = [
     {
         name: "Juan Dela Cruz",
-        email: "projectgala929@gmail.com",
+        email: "juan@example.com",
         phone: "0912345",
         skills: "Web Development, Marketing",
         availability: "2024-10-24 11:00",
