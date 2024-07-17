@@ -345,6 +345,7 @@ function approveVolunteer(volunteerId, row, email) {
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ email })
     })
     .then(response => {
         if (!response.ok) {
@@ -364,6 +365,7 @@ function approveVolunteer(volunteerId, row, email) {
 function rejectVolunteer(volunteerId, row, email) {
     fetch(`/deleteVolunteer/${volunteerId}`, {
         method: 'DELETE',
+        body: JSON.stringify({ email })
     })
     .then(response => {
         if (!response.ok) {
@@ -386,6 +388,7 @@ function approvePartner(volunteerId, row, email) {
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ email })
     })
     .then(response => {
         if (!response.ok) {
@@ -405,6 +408,7 @@ function approvePartner(volunteerId, row, email) {
 function rejectPartner(partnerId, row, email) {
     fetch(`/deletePartner/${partnerId}`, {
         method: 'DELETE',
+        body: JSON.stringify({ email })
     })
     .then(response => {
         if (!response.ok) {
