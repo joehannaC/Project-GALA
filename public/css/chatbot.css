@@ -14,6 +14,18 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: relative;
+}
+
+.unread-indicator {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
 }
 
 .chatbot-circle img {
@@ -140,4 +152,19 @@
 
 .bot-timestamp {
     text-align: left;
+}
+
+@keyframes pop-up {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pop-up-animation {
+    animation: pop-up 0.5s ease-in-out;
 }
