@@ -5,6 +5,7 @@ const db = require('./db');
 const util = require('util');
 const query = util.promisify(db.query).bind(db);
 const upload = require('./upload');
+const transporter = require('./mailer');
 
 router.get('/logout', async (req, res) => {
     req.session.destroy(err => {
@@ -366,10 +367,27 @@ router.put('/addVisitorCount', async (req, res) => {
 router.put('/approveVolunteer/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        const { email } = req.body;
+
         const updateVolunteerQuery = 'UPDATE volunteer SET Status = ? WHERE VolunteerID = ?';
         await query(updateVolunteerQuery, ['Approved', id]);
 
-        res.json({ success: true });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Volunteer Application Approved',
+            text: 'Congratulations! Your volunteer application has been approved. We look forward to working with you.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Volunteer approved, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Volunteer approved and email sent' });
+            }
+        });
     } catch (err) {
         console.error('Error approving volunteer:', err);
         res.status(500).json({ success: false, message: 'An error occurred while approving the volunteer' });
@@ -379,10 +397,27 @@ router.put('/approveVolunteer/:id', async (req, res) => {
 router.put('/approvePartner/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        const { email } = req.body;
+
         const updatePartnerQuery = 'UPDATE partner SET Status = ? WHERE PartnerID = ?';
         await query(updatePartnerQuery, ['Approved', id]);
 
-        res.json({ success: true });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Partner Application Approved',
+            text: 'Congratulations! Your partner application has been approved. We look forward to working with you.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Partner approved, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Partner approved and email sent' });
+            }
+        });
     } catch (err) {
         console.error('Error approving partner:', err);
         res.status(500).json({ success: false, message: 'An error occurred while approving the partner' });
@@ -441,11 +476,27 @@ router.put('/editAlbum/:id', async (req, res) => {
 router.delete('/deleteVolunteer/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        const { email } = req.body;
 
         const deleteVolunteerQuery = 'DELETE FROM volunteer WHERE VolunteerID = ?';
         await query(deleteVolunteerQuery, [id]);
 
-        res.json({ success: true });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Volunteer Application Rejected',
+            text: 'Thank you for your interest in volunteering with us. After careful consideration, we regret to inform you that your volunteer application has not been approved at this time.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Volunteer deleted, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Volunteer deleted and email sent' });
+            }
+        });
     } catch (err) {
         console.error('Error deleting volunteer:', err);
         res.status(500).json({ success: false, message: 'An error occurred while deleting the volunteer' });
@@ -455,11 +506,27 @@ router.delete('/deleteVolunteer/:id', async (req, res) => {
 router.delete('/deletePartner/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        const { email } = req.body;
 
         const deletePartnerQuery = 'DELETE FROM partner WHERE PartnerID = ?';
         await query(deletePartnerQuery, [id]);
 
-        res.json({ success: true });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Partner Application Rejected',
+            text: 'Thank you for your interest in partnering with us. After careful consideration, we regret to inform you that your partner application has not been approved at this time.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Partner deleted, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Partner deleted and email sent' });
+            }
+        });
     } catch (err) {
         console.error('Error deleting partner:', err);
         res.status(500).json({ success: false, message: 'An error occurred while deleting the partner' });
@@ -510,6 +577,5 @@ router.delete('/deleteAlbum/:id', async (req, res) => {
         res.status(500).json({ success: false, message: 'An error occurred while deleting the album' });
     }
 });
-
 
 module.exports = router;
