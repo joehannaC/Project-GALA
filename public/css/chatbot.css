@@ -1,5 +1,5 @@
 .chatbot-container {
-    position: fixed;
+    position: absolute;
     font-family: Arial, sans-serif;
     bottom: 20px;
     right: 20px;

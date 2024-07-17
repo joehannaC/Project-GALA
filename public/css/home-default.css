@@ -134,14 +134,9 @@ nav ul li.about-us {
 
 .slideshow-container {
     position: relative;
-    margin: auto;
     width: 100%; 
-    max-width: 1860px; 
     height: auto; 
     overflow: hidden;
-    border-radius: 20px;
-    margin-top: 1%;
-    margin-bottom: 1%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     
 }
@@ -634,7 +629,6 @@ footer p {
     background-size: cover;
     background-attachment: fixed;
     color: white;
-    padding: 30px;
     text-align: left;
     flex: 1 0 auto;
 }
@@ -651,9 +645,9 @@ footer p {
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
-    width: 70%;
+    width: 90%;
     border-radius: 20px;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -704,9 +698,9 @@ footer p {
 .testimonial-section {
     background-color: #f9f9f9;
     padding: 50px 20px;
-    margin-bottom: 40px; /* Add some spacing before the footer */
-    border-radius: 20px; /* Optional: To match the rounded container in your example */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: For a subtle shadow */
+    margin-bottom: 40px; 
+    border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
 }
 
 .testimonial-section h2 {
