@@ -213,7 +213,6 @@ router.post('/verifyEmail', async (req, res) => {
         if (results.length === 0) {
             res.status(404).json({ success: false, message: 'Email not found' });
         } else {
-            const userID = results[0].UserID;
             const mailOptions = {
                 from: process.env.EMAIL_USER,
                 to: email,
@@ -227,7 +226,7 @@ router.post('/verifyEmail', async (req, res) => {
                     res.status(500).json({ success: false, message: 'Email verified, but an error occurred while sending the email' });
                 } else {
                     console.log('Email sent:', info.response);
-                    res.json({ success: true, message: 'Email verified and email sent', userID: userID });
+                    res.json({ success: true, message: 'Email verified and email sent' });
                 }
             });
         }
@@ -352,13 +351,12 @@ router.post('/addContact', async (req, res) => {
     }
 });
 
-router.put('/resetPassword/:id', async (req, res) => {
+router.put('/resetPassword', async (req, res) => {
     try {
-        const { id } = req.params;
-        const { newPassword } = req.body;
+        const { email, newPassword } = req.body;
 
-        const resetPasswordQuery = 'UPDATE user SET Password = ? WHERE UserID = ?';
-        await query(resetPasswordQuery, [newPassword, id]);
+        const resetPasswordQuery = 'UPDATE user SET Password = ? WHERE Email = ?';
+        await query(resetPasswordQuery, [newPassword, email]);
 
         res.json({ success: true });
     } catch {
