@@ -1,6 +1,4 @@
 let uniqueKey = 0;
-let users = [];
-let userId = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('forgot-password').style.display = 'none';
@@ -25,8 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                userId = data.userID;
-                resetPassword(userId);
+                resetPassword(email);
             } else {
                 alert('An error occurred: ' + data.message);
             }
@@ -50,7 +47,7 @@ function generateUniqueKey() {
     return uniqueSixDigitNumber;
 }
 
-function resetPassword(userId) {
+function resetPassword(email) {
     document.getElementById('forgot-password').style.display = 'block';
     document.getElementById('verify-email').style.display = 'none';
 
@@ -59,13 +56,18 @@ function resetPassword(userId) {
         const enteredKey = document.getElementById('unique-keys');
         const newPassword = document.getElementById('new-password');
 
+        const credentials = {
+            email: email,
+            newPassword: newPassword
+        };
+
         if (uniqueKey === enteredKey) {
-            fetch(`/resetPassword/${userId}`, {
+            fetch(`/resetPassword`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ newPassword })
+                body: JSON.stringify(credentials)
             })
             .then(response => {
                 if (!response.ok) {
