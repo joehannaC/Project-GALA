@@ -203,39 +203,38 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/verify-email', (req, res) => {
-    const { email } = req.body;
-    db.query('SELECT * FROM user WHERE email = ?', [email], (err, results) => {
-        if (err) {
-            console.error('Error querying database:', err);
-            res.status(500).json({ success: false, message: 'Database error' });
-            return;
-        }
+router.post('/verifyEmail', async (req, res) => {
+    try {
+        const { email, uniqueKey } = req.body;
+
+        const verifyEmailQuery = 'SELECT * FROM user WHERE Email = ?';
+        const results = await query(verifyEmailQuery, [email]);
 
         if (results.length === 0) {
             res.status(404).json({ success: false, message: 'Email not found' });
         } else {
-            const userId = results[0].UserID;
-            res.json({ success: true, message: 'Unique key sent to your email', userId });
+            const userID = results[0].UserID;
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: 'Password Reset Key',
+                text: 'Here is the verification key for your password reset request: ' + uniqueKey
+            };
+    
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending email:', error);
+                    res.status(500).json({ success: false, message: 'Email verified, but an error occurred while sending the email' });
+                } else {
+                    console.log('Email sent:', info.response);
+                    res.json({ success: true, message: 'Email verified and email sent', userID: userID });
+                }
+            });
         }
-    });
-});
-
-router.post('/reset-password', (req, res) => {
-    const { userId, uniqueKey, newPassword } = req.body;
-    db.query('UPDATE user SET password = ? WHERE id = ? AND reset_key = ?', [newPassword, userId, uniqueKey], (err, results) => {
-        if (err) {
-            console.error('Error updating password:', err);
-            res.status(500).json({ success: false, message: 'Database error' });
-            return;
-        }
-
-        if (results.affectedRows > 0) {
-            res.json({ success: true, message: 'Password reset successfully' });
-        } else {
-            res.status(404).json({ success: false, message: 'Invalid user or key' });
-        }
-    });
+    } catch (err) {
+        console.error('Error verifying email:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while verifying the email' });
+    }
 });
 
 router.post('/uploadImage', upload.single('image'), async (req, res) => {
@@ -350,6 +349,21 @@ router.post('/addContact', async (req, res) => {
     } catch (err) {
         console.error('Error adding contact:', err);
         res.status(500).json({ success: false, message: 'An error occurred while adding the contact' });
+    }
+});
+
+router.put('/resetPassword/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { newPassword } = req.body;
+
+        const resetPasswordQuery = 'UPDATE user SET Password = ? WHERE UserID = ?';
+        await query(resetPasswordQuery, [newPassword, id]);
+
+        res.json({ success: true });
+    } catch {
+        console.error('Error resetting password:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while resetting the password' });
     }
 });
 
