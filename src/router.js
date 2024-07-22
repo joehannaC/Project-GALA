@@ -136,11 +136,11 @@ router.get('/getContact', async (req, res) => {
     }
 });
 
-router.post('/user/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const sql = 'SELECT * FROM user WHERE Email = ? AND Role != ?';
-        const results = await query(sql, [email, 'Admin']);
+        const loginQuery = 'SELECT * FROM user WHERE Email = ?';
+        const results = await query(loginQuery, [email]);
         
         if (results.length === 0) {
             return res.status(401).send('Invalid email or password');
@@ -149,31 +149,8 @@ router.post('/user/login', async (req, res) => {
         const user = results[0];
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
-            req.session.userId = user.Id;
-            res.redirect('/User.html');
-        } else {
-            res.status(401).send('Invalid email or password');
-        }
-    } catch (err) {
-        res.status(500).send('An error occurred during login');
-    }
-});
-
-router.post('/admin/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const sql = 'SELECT * FROM user WHERE Email = ? AND Role = ?';
-        const results = await query(sql, [email, 'Admin']);
-        
-        if (results.length === 0) {
-            return res.status(401).send('Invalid email or password');
-        }
-
-        const user = results[0];
-        const match = await bcrypt.compare(password, user.Password);
-        if (match) {
-            req.session.userId = user.Id;
-            res.redirect('/home_admin.html');
+            req.session.userId = user.UserID;
+            res.json({ role: user.Role });
         } else {
             res.status(401).send('Invalid email or password');
         }
