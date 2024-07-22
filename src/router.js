@@ -1,11 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const router = express.Router();
 const db = require('./db');
 const util = require('util');
-const query = util.promisify(db.query).bind(db);
 const upload = require('./upload');
 const transporter = require('./mailer');
+const router = express.Router();
+const query = util.promisify(db.query).bind(db);
 
 router.get('/logout', async (req, res) => {
     req.session.destroy(err => {
@@ -150,6 +150,7 @@ router.post('/user/login', async (req, res) => {
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
             req.session.userId = user.Id;
+            res.redirect('/User.html');
         } else {
             res.status(401).send('Invalid email or password');
         }
@@ -172,6 +173,7 @@ router.post('/admin/login', async (req, res) => {
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
             req.session.userId = user.Id;
+            res.redirect('/home_admin.html');
         } else {
             res.status(401).send('Invalid email or password');
         }
