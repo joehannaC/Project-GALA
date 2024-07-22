@@ -11,7 +11,7 @@ document.getElementById('user-input').addEventListener('keypress', function(even
 document.addEventListener('DOMContentLoaded', loadQA);
 
 function loadQA() {
-    fetch('/currentQA')
+    fetch('/allQA')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
