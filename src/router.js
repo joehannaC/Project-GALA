@@ -12,7 +12,6 @@ router.get('/logout', async (req, res) => {
         if (err) {
             return res.status(500).send('An error occurred during logout');
         }
-        res.redirect('/index.html');
     });
 });
 
@@ -151,7 +150,6 @@ router.post('/user/login', async (req, res) => {
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
             req.session.userId = user.Id;
-            res.redirect('/home.html');
         } else {
             res.status(401).send('Invalid email or password');
         }
@@ -174,7 +172,6 @@ router.post('/admin/login', async (req, res) => {
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
             req.session.userId = user.Id;
-            res.redirect('/home_admin.html');
         } else {
             res.status(401).send('Invalid email or password');
         }
@@ -354,9 +351,10 @@ router.post('/addContact', async (req, res) => {
 router.put('/resetPassword', async (req, res) => {
     try {
         const { email, newPassword } = req.body;
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
 
         const resetPasswordQuery = 'UPDATE user SET Password = ? WHERE Email = ?';
-        await query(resetPasswordQuery, [newPassword, email]);
+        await query(resetPasswordQuery, [hashedPassword, email]);
 
         res.json({ success: true });
     } catch {
