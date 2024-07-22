@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password: document.getElementById('password').value
         };
 
-        fetch('/user/login', {
+        fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,11 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
-            return response.text();
+            return response.json();
         })
         .then(data => {
-            console.log(data);
-            window.location.href = "User.html";
+            if (data.role === 'Admin') {
+                window.location.href = "home_admin.html";
+            } else {
+                window.location.href = "User.html";
+            }
             loginForm.reset();
         })
         .catch(error => {
