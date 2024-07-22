@@ -1,4 +1,3 @@
-
 let slideIndex = 0;
 showSlides();
 
@@ -27,6 +26,20 @@ function plusSlides(n) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
+    fetch('/addVisitorCount', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Visitor count incremented.');
+    })
+    .catch(error => {
+        console.error('Error incrementing visitor count:', error);
+    });
+    
     // Only update date and time if the datetime element exists
     const datetimeElement = document.getElementById('datetime');
     if (datetimeElement) {
