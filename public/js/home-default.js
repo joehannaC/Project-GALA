@@ -1,3 +1,4 @@
+
 let slideIndex = 0;
 showSlides();
 
@@ -26,20 +27,6 @@ function plusSlides(n) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    fetch('/addVisitorCount', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Visitor count incremented.');
-    })
-    .catch(error => {
-        console.error('Error incrementing visitor count:', error);
-    });
-    
     // Only update date and time if the datetime element exists
     const datetimeElement = document.getElementById('datetime');
     if (datetimeElement) {
@@ -132,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 let testimonialIndex = 0;
-let currentSlideDirection = "right"; // Track the direction of the slide
+let currentSlideDirection = "right";
 
 function plusTestimonials(n) {
     currentSlideDirection = n > 0 ? "right" : "left";
@@ -167,23 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-function showDonateModal() {
-    document.getElementById('donateModal').style.display = 'block';
-}
 
-function closeDonateModal() {
-    document.getElementById('donateModal').style.display = 'none';
-}
-
-function showImage(type) {
-    var donationImage = document.getElementById('donationImage');
-    if (type === 'bank') {
-        donationImage.src = 'path/to/your/bank-image.png'; // Update with your bank image path
-    } else if (type === 'gcash') {
-        donationImage.src = 'path/to/your/gcash-image.png'; // Update with your Gcash image path
-    }
-    donationImage.style.display = 'block';
-}
 
 
 
