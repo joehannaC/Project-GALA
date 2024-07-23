@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Gala</title>
     <link rel="stylesheet" href="css/featured-stories_user.css">
+    <link rel="stylesheet" href="css/donate-popup.css">
     <link rel="stylesheet" href="css/iframe.css">
 </head>
 <body>
@@ -12,8 +13,26 @@
         <a href="home-default.html">
             <img src="images/gala-logo.png" alt="Project GALA Logo" class="logo">
         </a>
-        <button class="donate-button">DONATE NOW</button>
+        <button class="donate-button" onclick="showDonateModal()">DONATE NOW</button>
     </header>
+
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDonateModal()">&times;</span>
+            <h2>Select Donation Method</h2>
+            <div class="modal-buttons">
+                <div class="donation-option" onclick="showImage('bank')">
+                    <img src="images/Donation/Bank.png" alt="Bank Image" class="donation-image">
+                    <div class="modal-label">Bank</div>
+                </div>
+                <div class="donation-option" onclick="showImage('gcash')">
+                    <img src="images/Donation/G-Cash.png" alt="Gcash Image" class="donation-image">
+                    <div class="modal-label">Gcash</div>
+                </div>
+            </div>
+            <img id="donationImage" src="" alt="Donation Image" style="display: none; margin-top: 20px; width: 100%;">
+        </div>
+    </div>
 
     <nav>
         <ul>
@@ -62,24 +81,204 @@
             <div class="content-container">
                 <h1>Featured Stories</h1>
             </div>
-            <div id="stories-container" class="main-story-container">
-                <!-- Stories inserte here -->
+            <div class="main-story-container">
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story" onclick="openModal()">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-container">
+                    <div class="story">
+                        <div class="story-header">
+                            <div class="author-image-container">
+                                <img src="author.jpg" alt="author's image" class="author-image">
+                            </div>
+                            <div class="story-details">
+                                <h2>Story Title</h2>
+                                <p class="summary">Summary of the story</p>
+                            </div>
+                        </div>
+                        <div class="story-footer">
+                            <div class="author-info">
+                                <p class="author-name">Author's name</p>
+                                <p class="author-role">Author's role</p>
+                            </div>
+                            <a href="#" class="read-story">Read author's story</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
+    
+    
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="author-image-container">
-                <img src="" alt="author's image" class="author-image" id="modal-author-image">
+                <img src="images/founders/Lou Marxis Gallevo.jpg" alt="author's image" class="author-image">
             </div>
             <div class="author-details">
-                <p class="author-name" id="modal-author-name">Author's name</p>
-                <p class="author-role" id="modal-author-role">Author's role</p>
+                <p class="author-name">Author's name</p>
+                <p class="author-role">Author's role</p>
             </div>
-            <h2 id="modal-story-title">Story Title</h2>
-            <p id="modal-story-content">Story content goes here.</p>
+            <h2>Story Title</h2>
+            <p>Story content goes here...</p>
         </div>
     </div>
 
@@ -119,5 +318,6 @@
     </footer>
     
     <script src="js/featured-stories_user.js"></script>
+    <script src="js/donate-popup.js"></script>
 </body>
 </html>

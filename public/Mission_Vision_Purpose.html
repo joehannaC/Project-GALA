@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission_Vision</title>
     <link rel="stylesheet" href="css/Mission_Vision_Purpose.css">
+    <link rel="stylesheet" href="css/donate-popup.css">
     <link rel="stylesheet" href="css/iframe.css">
 </head>
 <body>
@@ -12,8 +13,26 @@
         <a href="home-default.html">
             <img src="images/gala-logo.png" alt="Project GALA Logo" class="logo">
         </a>
-        <button class="donate-button">DONATE NOW</button>
+        <button class="donate-button" onclick="showDonateModal()">DONATE NOW</button>
     </header>
+
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDonateModal()">&times;</span>
+            <h2>Select Donation Method</h2>
+            <div class="modal-buttons">
+                <div class="donation-option" onclick="showImage('bank')">
+                    <img src="images/Donation/Bank.png" alt="Bank Image" class="donation-image">
+                    <div class="modal-label">Bank</div>
+                </div>
+                <div class="donation-option" onclick="showImage('gcash')">
+                    <img src="images/Donation/G-Cash.png" alt="Gcash Image" class="donation-image">
+                    <div class="modal-label">Gcash</div>
+                </div>
+            </div>
+            <img id="donationImage" src="" alt="Donation Image" style="display: none; margin-top: 20px; width: 100%;">
+        </div>
+    </div>
 
     <nav>
         <ul>
@@ -124,5 +143,6 @@
     </footer>
     
     <script src="js/Mission_Vision_Purpose.js"></script>
+    <script src="js/donate-popup.js"></script>
 </body>
 </html>
