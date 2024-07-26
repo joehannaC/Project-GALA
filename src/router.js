@@ -7,10 +7,19 @@ const transporter = require('./mailer');
 const router = express.Router();
 const query = util.promisify(db.query).bind(db);
 
+router.use((req, res, next) => {
+    if (typeof req.session.isLoggedIn === 'undefined') {
+        req.session.isLoggedIn = false;
+    }
+    next();
+});
+
 router.get('/logout', async (req, res) => {
     req.session.destroy(err => {
         if (err) {
             return res.status(500).send('An error occurred during logout');
+        } else {
+            res.json({ success: true, message: 'Logged out successfully' });
         }
     });
 });
@@ -143,19 +152,21 @@ router.post('/login', async (req, res) => {
         const results = await query(loginQuery, [email]);
         
         if (results.length === 0) {
-            return res.status(401).send('Invalid email or password');
+            return res.status(401).json({ success: false, message: 'Invalid email or password' });
         }
 
         const user = results[0];
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
             req.session.userId = user.UserID;
-            res.json({ role: user.Role });
+            req.session.isLoggedIn = true; 
+            console.log(`User "${user.Email}" has logged in`); 
+            res.json({ success: true, role: user.Role });
         } else {
-            res.status(401).send('Invalid email or password');
+            res.status(401).json({ success: false, message: 'Invalid email or password' });
         }
     } catch (err) {
-        res.status(500).send('An error occurred during login');
+        res.status(500).json({ success: false, message: 'An error occurred during login' });
     }
 });
 
