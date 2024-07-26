@@ -1,53 +1,3 @@
-function updateDateTime() {
-    const now = new Date();
-    const options = { 
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
-    };
-    const formattedDateTime = now.toLocaleDateString('en-US', options);
-    document.getElementById('datetime').innerHTML = formattedDateTime;
-}
-
-setInterval(updateDateTime, 1000);
-updateDateTime();
-document.addEventListener("DOMContentLoaded", function() {
-    const dropdownItems = document.querySelectorAll("nav ul li.dropdown.login");
-    const loginForm = document.getElementById("loginForm");
-    const registerForm = document.getElementById("registerForm");
-    const switchSlider = document.querySelector(".switch .slider");
-    let timeoutId;
-
-    dropdownItems.forEach(item => {
-        item.addEventListener("mouseover", function() {
-            clearTimeout(timeoutId);
-            this.querySelector(".dropdown-content").style.display = "block";
-        });
-
-        item.addEventListener("mouseout", function() {
-            timeoutId = setTimeout(() => {
-                this.querySelector(".dropdown-content").style.display = "none";
-            }, 300); // Adjust delay as needed
-        });
-    });
-    
-    const switchButtons = document.querySelectorAll(".switch button");
-
-    switchButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            switchButtons.forEach(btn => btn.classList.remove("active-btn"));
-            this.classList.add("active-btn");
-            if (this.id.includes("loginBtn")) {
-                loginForm.classList.add("active-form");
-                registerForm.classList.remove("active-form");
-                switchSlider.style.transform = "translateX(0)";
-            } else {
-                loginForm.classList.remove("active-form");
-                registerForm.classList.add("active-form");
-                switchSlider.style.transform = "translateX(100%)";
-            }
-        });
-    });
-});
 
 function openBothPopups() {
     document.getElementById('feedbackPopup').style.display = 'block';
@@ -72,3 +22,45 @@ window.onclick = function(event) {
         loginModal.style.display = 'none';
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    async function checkLoginStatus() {
+        try {
+            const response = await fetch('/checkLogin');
+            const data = await response.json();
+            return data.isLoggedIn;
+        } catch (error) {
+            console.error('Error checking login status:', error);
+            return false;
+        }
+    }
+
+    async function updateNavigation() {
+        const isLoggedIn = await checkLoginStatus();
+        const accountLink = document.getElementById('account-link');
+
+        if (isLoggedIn) {
+            accountLink.className = 'dropdown logout';
+            accountLink.innerHTML = `
+                <a href="#logout" data-arrow>MY ACCOUNT</a>
+                <div class="dropdown-content logout-dropdown">
+                    <a href="My_Account.html">ACCOUNT SETTINGS</a>
+                    <a href="home-default.html" id="logout-link">LOGOUT</a>
+                </div>
+            `;
+
+            document.getElementById('logout-link').addEventListener('click', async function() {
+                await fetch('/logout');
+                sessionStorage.removeItem('isLoggedIn');
+                window.location.href = 'home-default.html';
+            });
+        } else {
+            accountLink.className = 'dropdown login';
+            accountLink.innerHTML = `
+                <a href="user-login-register.html" data-arrow>LOGIN / REGISTER</a>
+            `;
+        }
+    }
+
+    updateNavigation();
+});
