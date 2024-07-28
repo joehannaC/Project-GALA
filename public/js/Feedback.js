@@ -1,28 +1,3 @@
-
-function openBothPopups() {
-    document.getElementById('feedbackPopup').style.display = 'block';
-    document.getElementById('loginPopup').style.display = 'block';
-}
-
-function closeFeedbackPopup() {
-    document.getElementById('feedbackPopup').style.display = 'none';
-}
-
-function closeLoginPopup() {
-    document.getElementById('loginPopup').style.display = 'none';
-}
-
-window.onclick = function(event) {
-    var feedbackModal = document.getElementById('feedbackPopup');
-    var loginModal = document.getElementById('loginPopup');
-    if (event.target == feedbackModal) {
-        feedbackModal.style.display = 'none';
-    }
-    if (event.target == loginModal) {
-        loginModal.style.display = 'none';
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     async function checkLoginStatus() {
         try {
@@ -62,5 +37,36 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    async function openBothPopups() {
+        const isLoggedIn = await checkLoginStatus();
+        if (isLoggedIn) {
+            document.getElementById('feedbackPopup').style.display = 'block';
+        } else {
+            document.getElementById('loginPopup').style.display = 'block';
+        }
+    }
+
+    function closeFeedbackPopup() {
+        document.getElementById('feedbackPopup').style.display = 'none';
+    }
+
+    function closeLoginPopup() {
+        document.getElementById('loginPopup').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var feedbackModal = document.getElementById('feedbackPopup');
+        var loginModal = document.getElementById('loginPopup');
+        if (event.target == feedbackModal) {
+            feedbackModal.style.display = 'none';
+        }
+        if (event.target == loginModal) {
+            loginModal.style.display = 'none';
+        }
+    }
+
     updateNavigation();
+    document.querySelector(".feedback-btn").onclick = openBothPopups;
+    document.querySelector('#feedbackPopup .close-btn').onclick = closeFeedbackPopup; // Ensure this line is included
+    document.querySelector('#loginPopup .close-btn').onclick = closeLoginPopup; // Ensure this line is included
 });
