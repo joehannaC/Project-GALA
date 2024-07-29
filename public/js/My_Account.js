@@ -113,6 +113,19 @@ function highlightTab(evt) {
     evt.currentTarget.className += " active";
 
     if (evt.currentTarget.id === "edit-profile-tab") {
+        document.getElementById("profile-name").setAttribute("contenteditable", "true");
+        document.getElementById("profile-role").setAttribute("contenteditable", "true");
+        document.getElementById("profile-statement").setAttribute("contenteditable", "true");
+        document.getElementById("edit-buttons-profile").style.display = "block";
+    } else {
+        document.getElementById("profile-name").setAttribute("contenteditable", "false");
+        document.getElementById("profile-role").setAttribute("contenteditable", "false");
+        document.getElementById("profile-statement").setAttribute("contenteditable", "false");
+        document.getElementById("edit-buttons-profile").style.display = "none";
+    }
+
+    // Other existing code for readonly attributes and edit-buttons visibility
+    if (evt.currentTarget.id === "edit-profile-tab") {
         document.getElementById("contact-number").removeAttribute("readonly");
         document.getElementById("email-address").removeAttribute("readonly");
         document.getElementById("birthday").removeAttribute("readonly");
