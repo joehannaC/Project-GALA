@@ -164,7 +164,7 @@ const adminData = [
         role: "Admin"
     },
     {
-        email: "admin3@example.com",
+        email: "santosalejandrogabriel929@gmail.com",
         password: "admin3",
         role: "Admin"
     }
