@@ -53,8 +53,8 @@ function resetPassword(email) {
 
     document.getElementById('passwordForm').addEventListener('submit', function (event) {
         event.preventDefault();
-        const enteredKey = document.getElementById('unique-keys');
-        const newPassword = document.getElementById('new-password');
+        const enteredKey = document.getElementById('unique-keys').value;
+        const newPassword = document.getElementById('new-password').value;
         console.log('Unique key is: ' + uniqueKey);
         console.log('Entered key is: ' + enteredKey);
 
