@@ -55,6 +55,8 @@ function resetPassword(email) {
         event.preventDefault();
         const enteredKey = document.getElementById('unique-keys');
         const newPassword = document.getElementById('new-password');
+        console.log('Unique key is: ' + uniqueKey);
+        console.log('Entered key is: ' + enteredKey);
 
         const credentials = {
             email: email,
