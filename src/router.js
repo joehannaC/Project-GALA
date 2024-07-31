@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const db = require('./db');
 const util = require('util');
 const upload = require('./upload');
-// const transporter = require('./mailer');
+const transporter = require('./mailer');
 const router = express.Router();
 const query = util.promisify(db.query).bind(db);
 
