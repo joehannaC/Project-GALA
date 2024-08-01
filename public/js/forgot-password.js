@@ -79,7 +79,7 @@ function resetPassword(email) {
             })
             .then(data => {
                 console.log('Password successfully changed!');
-                window.location.href = "login_admin.html";
+                window.location.href = "user-login-register.html";
             })
             .catch(error => {
                 console.error('Error resetting password:', error);
