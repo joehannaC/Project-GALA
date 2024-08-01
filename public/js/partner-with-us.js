@@ -74,3 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function goBack() {
     window.history.back();
 }
+
+function redirectToUserJS() {
+    window.location.href = 'User.html';
+}
