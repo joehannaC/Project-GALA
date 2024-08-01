@@ -44,7 +44,7 @@ function renderQATable() {
         const cellActions = newRow.insertCell(3);
         
         const deleteButton = document.createElement('img');
-        deleteButton.src = 'delete.png';
+        deleteButton.src = '../public/images/delete.png';
         deleteButton.alt = 'Delete';
         deleteButton.title = 'Delete';
         deleteButton.classList.add('action-icon');
@@ -52,7 +52,7 @@ function renderQATable() {
         cellActions.appendChild(deleteButton);
         
         const editButton = document.createElement('img');
-        editButton.src = 'edit.png';
+        editButton.src = '../public/images/edit.png';
         editButton.alt = 'Edit';
         editButton.title = 'Edit';
         editButton.classList.add('action-icon');
