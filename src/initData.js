@@ -232,17 +232,29 @@ const getInTouchData = [
 ];
 
 const qaData = [
-    {
-        question: "How are you?",
-        answer: "I'm fine"
+     {
+        question: "Tell me about Project GALA.",
+        answer: "Project GALA (Give a Love Anywhere) is a volunteer organization dedicated to community service and disaster response. Our projects focus on providing aid, education, and hope to various communities in need across the Philippines."
     },
     {
         question: "What is the motto of Project GALA?",
         answer: "Give. Share. Be an Advocate"
     },
     {
-        question: "Wait, it's all Ohio?",
-        answer: "Always has been!"
+        question: "How can I volunteer for Project GALA?",
+        answer: "We welcome volunteers for various roles such as creating publication materials, seeking partners and donors, assisting with logistical support, and distributing aid. To sign up, visit our volunteer page or contact us directly."
+    },
+    {
+        question: "How can I donate to Project GALA?",
+        answer: "You can support our projects through monetary and in-kind donations. Visit our donations page for more details on how to contribute and the specific needs of our ongoing initiatives."
+    },
+    {
+        question: "Can you tell me about some past projects of Project GALA?",
+        answer: "Project GALA has successfully executed various impactful projects. We also run annual gift-giving events like TALAng GALA and special holiday initiatives like Paskong PGibig."
+    },
+    {
+        question: "How can I contact Project GALA?",
+        answer: "You can reach us via email at project.gala.2017@gmail.com, through our Facebook page, or by calling +639397527749. We look forward to hearing from you!"
     }
 ];
 
