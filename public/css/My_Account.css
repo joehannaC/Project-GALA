@@ -640,6 +640,12 @@ th {
     color: #777;
 }
 
+[contenteditable="true"] {
+    border: 1px solid #ddd;
+    padding: 2px;
+    border-radius: 3px;
+}
+
 .details-labels, .details-info {
     padding: 1%;
     flex: 1;

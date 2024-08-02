@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password: document.getElementById('password').value
         };
 
-        fetch('/login', {
+        fetch('/admin/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
