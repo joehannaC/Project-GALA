@@ -50,7 +50,7 @@ function loadStories() {
             return response.json();
         })
         .then(data => {
-            stories = data.stories;
+            const stories = data.stories;
             stories.forEach(story => {
                 displayStory(story);
             });
