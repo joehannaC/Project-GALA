@@ -123,8 +123,13 @@ function displayStory(story) {
     authorRole.className = 'author-role';
     authorRole.textContent = story.AuthorRole;
 
+    const storyCategory = document.createElement('p');
+    storyCategory.className = 'category';
+    storyCategory.textContent = story.Category;
+
     authorInfo.appendChild(authorName);
     authorInfo.appendChild(authorRole);
+    authorInfo.appendChild(storyCategory);
 
     const readStoryLink = document.createElement('a');
     readStoryLink.href = '#';
