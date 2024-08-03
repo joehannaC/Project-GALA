@@ -41,6 +41,19 @@ document.addEventListener("DOMContentLoaded", function() {
     updateNavigation();
 });
 
+function openModal(story) {
+    document.getElementById('modal-author-image').src = story.ImagePath;
+    document.getElementById('modal-author-name').textContent = story.Author;
+    document.getElementById('modal-author-role').textContent = story.AuthorRole;
+    document.getElementById('modal-story-title').textContent = story.StoryTitle;
+    document.getElementById('modal-story-content').textContent = story.Description;
+    document.getElementById('myModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+}
+
 function loadStories() {
     fetch('/allStories')
         .then(response => {
@@ -61,79 +74,74 @@ function loadStories() {
 }
 
 function displayStory(story) {
-    const photoGallery = document.getElementById('photoGallery');
+    const storyContainer = document.querySelector('.main-story-container');
+    
     const storyElement = document.createElement('div');
-    storyElement.classList.add('album');
-    storyElement.id = `story-${story.StoryID}`;
+    storyElement.className = 'story-container';
 
-    const titleElement = document.createElement('h3');
-    titleElement.textContent = story.StoryTitle;
-    storyElement.appendChild(titleElement);
+    const storyDiv = document.createElement('div');
+    storyDiv.className = 'story';
 
-    const descriptionElement = document.createElement('p');
-    descriptionElement.textContent = story.Description;
-    storyElement.appendChild(descriptionElement);
+    const storyHeader = document.createElement('div');
+    storyHeader.className = 'story-header';
 
-    const authorElement = document.createElement('p');
-    authorElement.textContent = `Author: ${story.Author}`;
-    storyElement.appendChild(authorElement);
+    const authorImageContainer = document.createElement('div');
+    authorImageContainer.className = 'author-image-container';
 
-    const roleElement = document.createElement('p');
-    roleElement.textContent = `Author's Role: ${story.AuthorRole}`;
-    storyElement.appendChild(roleElement);
+    const authorImage = document.createElement('img');
+    authorImage.src = story.ImagePath;
+    authorImage.alt = "author's image";
+    authorImage.className = 'author-image';
+    authorImageContainer.appendChild(authorImage);
 
-    const highlightsElement = document.createElement('p');
-    highlightsElement.textContent = `Story Highlights: ${story.StoryHighlights}`;
-    storyElement.appendChild(highlightsElement);
+    const storyDetails = document.createElement('div');
+    storyDetails.className = 'story-details';
 
-    const categoryElement = document.createElement('p');
-    categoryElement.textContent = `Category: ${story.Category}`;
-    storyElement.appendChild(categoryElement);
+    const storyTitle = document.createElement('h2');
+    storyTitle.textContent = story.StoryTitle;
+    storyDetails.appendChild(storyTitle);
 
-    story.images.forEach(imagePath => {
-        const imageElement = document.createElement('img');
-        imageElement.src = imagePath;
-        imageElement.alt = 'Story Image';
-        imageElement.style.width = '100px';
-        imageElement.style.height = '100px';
-        imageElement.classList.add('album-image');
-        imageElement.onclick = () => viewFullSize(`${imagePath}`);
-        storyElement.appendChild(imageElement);
-    });
+    const storySummary = document.createElement('p');
+    storySummary.className = 'summary';
+    storySummary.textContent = story.StoryHighlights;
+    storyDetails.appendChild(storySummary);
 
-    const storyActions = document.createElement('div');
-    storyActions.classList.add('album-actions');
+    storyHeader.appendChild(authorImageContainer);
+    storyHeader.appendChild(storyDetails);
 
-    const deleteButton = document.createElement('button');
-    deleteButton.addEventListener('click', () => deleteStory(story.StoryID));
-    const deleteImage = document.createElement('img');
-    deleteImage.src = 'images/delete.png';
-    deleteImage.alt = 'Delete';
-    deleteImage.style.width = '20px';
-    deleteImage.style.height = '20px';
-    deleteImage.title = 'Delete';
-    deleteButton.appendChild(deleteImage);
-    storyActions.appendChild(deleteButton);
+    const storyFooter = document.createElement('div');
+    storyFooter.className = 'story-footer';
 
-    const editButton = document.createElement('button');
-    editButton.addEventListener('click', () => editStory(story.StoryID));
-    const editImage = document.createElement('img');
-    editImage.src = 'images/edit.png';
-    editImage.alt = 'Edit';
-    editImage.style.width = '20px';
-    editImage.style.height = '20px';
-    editImage.title = 'Edit';
-    editButton.appendChild(editImage);
-    storyActions.appendChild(editButton);
+    const authorInfo = document.createElement('div');
+    authorInfo.className = 'author-info';
 
-    storyElement.appendChild(storyActions);
-    photoGallery.appendChild(storyElement);
-}
+    const authorName = document.createElement('p');
+    authorName.className = 'author-name';
+    authorName.textContent = story.Author;
 
-function openModal() {
-    document.getElementById("myModal").style.display = "flex";
-}
+    const authorRole = document.createElement('p');
+    authorRole.className = 'author-role';
+    authorRole.textContent = story.AuthorRole;
 
-function closeModal() {
-    document.getElementById("myModal").style.display = "none";
+    authorInfo.appendChild(authorName);
+    authorInfo.appendChild(authorRole);
+
+    const readStoryLink = document.createElement('a');
+    readStoryLink.href = '#';
+    readStoryLink.className = 'read-story';
+    readStoryLink.textContent = "Read author's story";
+    readStoryLink.onclick = function () {
+        openModal(story);
+        return false;
+    };
+
+    storyFooter.appendChild(authorInfo);
+    storyFooter.appendChild(readStoryLink);
+
+    storyDiv.appendChild(storyHeader);
+    storyDiv.appendChild(storyFooter);
+
+    storyElement.appendChild(storyDiv);
+
+    storyContainer.appendChild(storyElement);
 }
