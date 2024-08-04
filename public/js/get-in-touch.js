@@ -131,3 +131,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateNavigation();
 });
+
+function addGetInTouch() {
+    const name = document.getElementById('full-name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('contact-number').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    const getInTouch = {
+        name: name,
+        email: email,
+        phone: phone,
+        subject: subject,
+        message: message
+    };
+
+    fetch('/addGetInTouch', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(getInTouch)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to add get in touch');
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('contact-form').reset();
+    })
+    .catch(error => {
+        console.error('Error saving get in touch:', error);
+    });
+}
