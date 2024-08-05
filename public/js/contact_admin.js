@@ -4,31 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateDateTime, 1000);
     updateDateTime();
     setupImageUploadPreview()
-    fetch('/getContact')
-        .then(response => response.json())
-        .then(data => {
-            if (data.contact) {
-                document.getElementById('address').value = data.contact.Address;
-                document.getElementById('contactNumber').value = data.contact.Phone;
-                document.getElementById('networkCategory').value = data.contact.Network;
-                document.getElementById('email').value = data.contact.Email;
-
-                const businessHours = data.businessHours;
-                businessHours.forEach(hour => {
-                    document.getElementById(hour.Day).checked = true;
-                    document.getElementById(`${hour.Day}-start-time`).value = hour.StartTime;
-                    document.getElementById(`${hour.Day}-end-time`).value = hour.EndTime;
-                });
-
-                if (data.contact.ImagePath) {
-                    const imagePath = data.contact.ImagePath;
-                    document.getElementById('uploaded-photo').src = imagePath;
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching contact:', error);
-        });
+    loadContact();
 });
 
 function updateDateTime() {
@@ -141,21 +117,30 @@ function addContactInfo() {
 }
 
 function loadContact() {
-    fetch('/allContacts')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch stories');
-            }
-            return response.json();
-        })
+    fetch('/getContact')
+        .then(response => response.json())
         .then(data => {
-            stories = data.stories;
-            stories.forEach(story => {
-                displayStory(story);
-            });
+            if (data.contact) {
+                document.getElementById('address').value = data.contact.Address;
+                document.getElementById('contactNumber').value = data.contact.Phone;
+                document.getElementById('networkCategory').value = data.contact.Network;
+                document.getElementById('email').value = data.contact.Email;
+
+                const businessHours = data.businessHours;
+                businessHours.forEach(hour => {
+                    document.getElementById(hour.Day).checked = true;
+                    document.getElementById(`${hour.Day}-start-time`).value = hour.StartTime;
+                    document.getElementById(`${hour.Day}-end-time`).value = hour.EndTime;
+                });
+
+                if (data.contact.ImagePath) {
+                    const imagePath = data.contact.ImagePath;
+                    document.getElementById('uploaded-photo').src = imagePath;
+                }
+            }
         })
         .catch(error => {
-            console.error('Error loading stories:', error);
+            console.error('Error fetching contact:', error);
         });
 }
 
