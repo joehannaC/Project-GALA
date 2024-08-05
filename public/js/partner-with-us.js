@@ -78,3 +78,83 @@ function goBack() {
 function redirectToUserJS() {
     window.location.href = 'User.html';
 }
+
+function addPartner() {
+    const name = document.getElementById('organization-name').value;
+    const contact = document.getElementById('contact-person').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const website = document.getElementById('website').value;
+    const project = document.getElementById('project').value;
+    const description = document.getElementById('organization-description').value;
+
+    const partner = {
+        name: name,
+        contact: contact,
+        email: email,
+        phone: phone,
+        website: website,
+        project: project,
+        description: description
+    };
+
+    fetch('/addPartner', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(partner)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to add partner');
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('partner-form').reset();
+    })
+    .catch(error => {
+        console.error('Error saving partner:', error);
+    });
+}
+
+function addVolunteer() {
+    const name = document.getElementById('full-name').value;
+    const email = document.getElementById('volunteer-email').value;
+    const phone = document.getElementById('volunteer-phone').value;
+    const skills = document.getElementById('volunteer-skills').value;
+    const availability = document.getElementById('availability').value;
+    const experience = document.getElementById('previous-experience').value;
+    const reason = document.getElementById('why-volunteer').value;
+
+    const volunteer = {
+        name: name,
+        email: email,
+        phone: phone,
+        skills: skills,
+        availability: availability,
+        experience: experience,
+        reason: reason
+    };
+
+    fetch('/addVolunteer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(volunteer)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to add volunteer');
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('volunteer-form').reset();
+    })
+    .catch(error => {
+        console.error('Error saving volunteer:', error);
+    });
+}
