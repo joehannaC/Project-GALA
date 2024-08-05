@@ -22,7 +22,7 @@
         
                 <br>
                 <!-- Partner Registration Form -->
-                <form id="partner-form">
+                <form id="partner-form" onsubmit="event.preventDefault(); addPartner();">
                     <label for="organization-name"><strong>Organization Name:</strong></label>
                     <input type="text" id="organization-name" name="organization-name" required>
                 
