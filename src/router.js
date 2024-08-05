@@ -352,6 +352,34 @@ router.post('/addGetInTouch', async (req, res) => {
     }
 });
 
+router.post('/addVolunteer', async (req, res) => {
+    try {
+        const { name, email, phone, skills, availability, experience, reason } = req.body;
+
+        const insertVolunteerQuery = 'INSERT INTO volunteer (FullName, Email, Phone, Skills, Availability, PreviousExperience, WhyVolunteer, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        await query(insertVolunteerQuery, [name, email, phone, skills, availability, experience, reason, 'Pending']);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error adding volunteer:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while adding the volunteer' });
+    }
+});
+
+router.post('/addPartner', async (req, res) => {
+    try {
+        const { name, contact, email, phone, website, project, description } = req.body;
+
+        const insertPartnerQuery = 'INSERT INTO partner (OrgName, ContactPerson, Email, Phone, Website, Project, OrgDescription, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        await query(insertPartnerQuery, [name, contact, email, phone, website, project, description, 'Pending']);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error adding partner:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while adding the partner' });
+    }
+});
+
 router.put('/resetPassword', async (req, res) => {
     try {
         const { email, newPassword } = req.body;
