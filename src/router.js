@@ -1,28 +1,81 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const router = express.Router();
 const db = require('./db');
 const util = require('util');
-const query = util.promisify(db.query).bind(db);
 const upload = require('./upload');
+const transporter = require('./mailer');
+const router = express.Router();
+const query = util.promisify(db.query).bind(db);
+
+router.use((req, res, next) => {
+    if (typeof req.session.isLoggedIn === 'undefined') {
+        req.session.isLoggedIn = false;
+    }
+    next();
+});
 
 router.get('/logout', async (req, res) => {
     req.session.destroy(err => {
         if (err) {
             return res.status(500).send('An error occurred during logout');
+        } else {
+            res.json({ success: true, message: 'Logged out successfully' });
         }
-        res.redirect('/index.html');
     });
+});
+
+router.get('/getVisitorCount', async (req, res) => {
+    try {
+        const countQuery = 'SELECT Count FROM visitor_count WHERE VisitorID = 1';
+        const results = await query(countQuery);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching visitor count:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the visitor count' });
+    }
 });
 
 router.get('/allUsers', async (req, res) => {
     try {
-        const userQuery = 'SELECT * FROM user';
-        const results = await query(userQuery);
+        const userQuery = 'SELECT * FROM user WHERE Role != ?';
+        const results = await query(userQuery, ['Admin']);
         res.json({ success: true, data: results });
     } catch (err) {
-        console.error('Error fetching Q&A:', err);
-        res.status(500).json({ success: false, message: 'An error occurred while fetching the Q&A' });
+        console.error('Error fetching users:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the users' });
+    }
+});
+
+router.get('/allVolunteers', async (req, res) => {
+    try {
+        const volunteerQuery = 'SELECT * FROM volunteer WHERE Status != ?';
+        const results = await query(volunteerQuery, ['Approved']);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching volunteers:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the volunteers' });
+    }
+});
+
+router.get('/allPartners', async (req, res) => {
+    try {
+        const partnerQuery = 'SELECT * FROM partner WHERE Status != ?';
+        const results = await query(partnerQuery, ['Approved']);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching partners:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the partners' });
+    }
+});
+
+router.get('/allGetInTouch', async (req, res) => {
+    try {
+        const getInTouchQuery = 'SELECT * FROM get_in_touch';
+        const results = await query(getInTouchQuery);
+        res.json({ success: true, data: results });
+    } catch (err) {
+        console.error('Error fetching get in touch:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching get in touch' });
     }
 });
 
@@ -49,7 +102,7 @@ router.get('/allStories', async (req, res) => {
         res.json({ success: true, stories: stories });
     } catch (err) {
         console.error('Error fetching stories:', err);
-        res.status(500).json({ success: false, message: 'An error occurred while fetching stories' });
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the stories' });
     }
 });
 
@@ -68,7 +121,7 @@ router.get('/allAlbums', async (req, res) => {
         res.json({ success: true, albums: albumsWithImages });
     } catch (err) {
         console.error('Error fetching albums:', err);
-        res.status(500).json({ success: false, message: 'An error occurred while fetching albums' });
+        res.status(500).json({ success: false, message: 'An error occurred while fetching the albums' });
     }
 });
 
@@ -92,49 +145,28 @@ router.get('/getContact', async (req, res) => {
     }
 });
 
-router.post('/user/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const sql = 'SELECT * FROM user WHERE Email = ? AND Role = ?';
-        const results = await query(sql, [email, 'User']);
+        const loginQuery = 'SELECT * FROM user WHERE Email = ?';
+        const results = await query(loginQuery, [email]);
         
         if (results.length === 0) {
-            return res.status(401).send('Invalid email or password');
+            return res.status(401).json({ success: false, message: 'Invalid email or password' });
         }
 
         const user = results[0];
         const match = await bcrypt.compare(password, user.Password);
         if (match) {
-            req.session.userId = user.Id;
-            res.redirect('/home.html');
+            req.session.userId = user.UserID;
+            req.session.isLoggedIn = true; 
+            console.log(`User "${user.Email}" has logged in`); 
+            res.json({ success: true, role: user.Role });
         } else {
-            res.status(401).send('Invalid email or password');
+            res.status(401).json({ success: false, message: 'Invalid email or password' });
         }
     } catch (err) {
-        res.status(500).send('An error occurred during login');
-    }
-});
-
-router.post('/admin/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const sql = 'SELECT * FROM user WHERE Email = ? AND Role = ?';
-        const results = await query(sql, [email, 'Admin']);
-        
-        if (results.length === 0) {
-            return res.status(401).send('Invalid email or password');
-        }
-
-        const user = results[0];
-        const match = await bcrypt.compare(password, user.Password);
-        if (match) {
-            req.session.userId = user.Id;
-            res.redirect('/home_admin.html');
-        } else {
-            res.status(401).send('Invalid email or password');
-        }
-    } catch (err) {
-        res.status(500).send('An error occurred during login');
+        res.status(500).json({ success: false, message: 'An error occurred during login' });
     }
 });
 
@@ -158,39 +190,37 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/verify-email', (req, res) => {
-    const { email } = req.body;
-    db.query('SELECT * FROM user WHERE email = ?', [email], (err, results) => {
-        if (err) {
-            console.error('Error querying database:', err);
-            res.status(500).json({ success: false, message: 'Database error' });
-            return;
-        }
+router.post('/verifyEmail', async (req, res) => {
+    try {
+        const { email, uniqueKey } = req.body;
+
+        const verifyEmailQuery = 'SELECT * FROM user WHERE Email = ?';
+        const results = await query(verifyEmailQuery, [email]);
 
         if (results.length === 0) {
             res.status(404).json({ success: false, message: 'Email not found' });
         } else {
-            const userId = results[0].UserID;
-            res.json({ success: true, message: 'Unique key sent to your email', userId });
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: 'Password Reset Key',
+                text: 'Here is the verification key for your password reset request: ' + uniqueKey
+            };
+    
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending email:', error);
+                    res.status(500).json({ success: false, message: 'Email verified, but an error occurred while sending the email' });
+                } else {
+                    console.log('Email sent:', info.response);
+                    res.json({ success: true, message: 'Email verified and email sent' });
+                }
+            });
         }
-    });
-});
-
-router.post('/reset-password', (req, res) => {
-    const { userId, uniqueKey, newPassword } = req.body;
-    db.query('UPDATE user SET password = ? WHERE id = ? AND reset_key = ?', [newPassword, userId, uniqueKey], (err, results) => {
-        if (err) {
-            console.error('Error updating password:', err);
-            res.status(500).json({ success: false, message: 'Database error' });
-            return;
-        }
-
-        if (results.affectedRows > 0) {
-            res.json({ success: true, message: 'Password reset successfully' });
-        } else {
-            res.status(404).json({ success: false, message: 'Invalid user or key' });
-        }
-    });
+    } catch (err) {
+        console.error('Error verifying email:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while verifying the email' });
+    }
 });
 
 router.post('/uploadImage', upload.single('image'), async (req, res) => {
@@ -308,6 +338,134 @@ router.post('/addContact', async (req, res) => {
     }
 });
 
+router.post('/addGetInTouch', async (req, res) => {
+    try {
+        const { name, email, phone, subject, message } = req.body;
+
+        const insertGetInTouchQuery = 'INSERT INTO get_in_touch (FullName, Email, Phone, Subject, Message) VALUES (?, ?, ?, ?, ?)';
+        await query(insertGetInTouchQuery, [name, email, phone, subject, message]);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error adding get in touch:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while adding get in touch' });
+    }
+});
+
+router.post('/addVolunteer', async (req, res) => {
+    try {
+        const { name, email, phone, skills, availability, experience, reason } = req.body;
+
+        const insertVolunteerQuery = 'INSERT INTO volunteer (FullName, Email, Phone, Skills, Availability, PreviousExperience, WhyVolunteer, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        await query(insertVolunteerQuery, [name, email, phone, skills, availability, experience, reason, 'Pending']);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error adding volunteer:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while adding the volunteer' });
+    }
+});
+
+router.post('/addPartner', async (req, res) => {
+    try {
+        const { name, contact, email, phone, website, project, description } = req.body;
+
+        const insertPartnerQuery = 'INSERT INTO partner (OrgName, ContactPerson, Email, Phone, Website, Project, OrgDescription, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        await query(insertPartnerQuery, [name, contact, email, phone, website, project, description, 'Pending']);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error adding partner:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while adding the partner' });
+    }
+});
+
+router.put('/resetPassword', async (req, res) => {
+    try {
+        const { email, newPassword } = req.body;
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        const resetPasswordQuery = 'UPDATE user SET Password = ? WHERE Email = ?';
+        await query(resetPasswordQuery, [hashedPassword, email]);
+
+        res.json({ success: true });
+    } catch {
+        console.error('Error resetting password:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while resetting the password' });
+    }
+});
+
+router.put('/addVisitorCount', async (req, res) => {
+    try {
+        const addCountQuery = 'UPDATE visitor_count SET Count = Count + 1 WHERE VisitorID = 1';
+        await query(addCountQuery);
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Error adding visitor count:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while adding the visitor count' });
+    }
+});
+
+router.put('/approveVolunteer/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { email } = req.body;
+
+        const updateVolunteerQuery = 'UPDATE volunteer SET Status = ? WHERE VolunteerID = ?';
+        await query(updateVolunteerQuery, ['Approved', id]);
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Volunteer Application Approved',
+            text: 'Congratulations! Your volunteer application has been approved. We look forward to working with you.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Volunteer approved, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Volunteer approved and email sent' });
+            }
+        });
+    } catch (err) {
+        console.error('Error approving volunteer:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while approving the volunteer' });
+    }
+});
+
+router.put('/approvePartner/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { email } = req.body;
+
+        const updatePartnerQuery = 'UPDATE partner SET Status = ? WHERE PartnerID = ?';
+        await query(updatePartnerQuery, ['Approved', id]);
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Partner Application Approved',
+            text: 'Congratulations! Your partner application has been approved. We look forward to working with you.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Partner approved, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Partner approved and email sent' });
+            }
+        });
+    } catch (err) {
+        console.error('Error approving partner:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while approving the partner' });
+    }
+});
+
 router.put('/editQA/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -357,6 +515,66 @@ router.put('/editAlbum/:id', async (req, res) => {
     }
 });
 
+router.delete('/deleteVolunteer/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { email } = req.body;
+
+        const deleteVolunteerQuery = 'DELETE FROM volunteer WHERE VolunteerID = ?';
+        await query(deleteVolunteerQuery, [id]);
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Volunteer Application Rejected',
+            text: 'Thank you for your interest in volunteering with us. After careful consideration, we regret to inform you that your volunteer application has not been approved at this time.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Volunteer deleted, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Volunteer deleted and email sent' });
+            }
+        });
+    } catch (err) {
+        console.error('Error deleting volunteer:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while deleting the volunteer' });
+    }
+});
+
+router.delete('/deletePartner/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { email } = req.body;
+
+        const deletePartnerQuery = 'DELETE FROM partner WHERE PartnerID = ?';
+        await query(deletePartnerQuery, [id]);
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Partner Application Rejected',
+            text: 'Thank you for your interest in partnering with us. After careful consideration, we regret to inform you that your partner application has not been approved at this time.'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false, message: 'Partner deleted, but an error occurred while sending the email' });
+            } else {
+                console.log('Email sent:', info.response);
+                res.json({ success: true, message: 'Partner deleted and email sent' });
+            }
+        });
+    } catch (err) {
+        console.error('Error deleting partner:', err);
+        res.status(500).json({ success: false, message: 'An error occurred while deleting the partner' });
+    }
+});
+
 router.delete('/deleteQA/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -401,6 +619,5 @@ router.delete('/deleteAlbum/:id', async (req, res) => {
         res.status(500).json({ success: false, message: 'An error occurred while deleting the album' });
     }
 });
-
 
 module.exports = router;

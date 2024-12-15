@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Gala</title>
+    <title>Project GALA | My Account</title>
     <link rel="stylesheet" href="css/My_Account.css">
+    <link rel="stylesheet" href="css/donate-popup.css">
+    <link rel="stylesheet" href="css/iframe.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
 </head>
 <body>
     <header>
         <a href="home-default.html">
             <img src="images/gala-logo.png" alt="Project GALA Logo" class="logo">
         </a>
-        <button class="donate-button">DONATE NOW</button>
+        <button class="donate-button" onclick="showDonateModal()">DONATE NOW</button>
     </header>
+
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDonateModal()">&times;</span>
+            <h2>Select Donation Method</h2>
+            <div class="modal-buttons">
+                <div class="donation-option" onclick="showImage('bank')">
+                    <img src="images/Donation/Bank.png" alt="Bank Image" class="donation-image">
+                    <div class="modal-label">Bank</div>
+                </div>
+                <div class="donation-option" onclick="showImage('gcash')">
+                    <img src="images/Donation/G-Cash.png" alt="Gcash Image" class="donation-image">
+                    <div class="modal-label">Gcash</div>
+                </div>
+            </div>
+            <img id="donationImage" src="" alt="Donation Image" style="display: none; margin-top: 20px; width: 100%;">
+        </div>
+    </div>
 
     <nav>
         <ul>
@@ -53,6 +74,9 @@
             </li>
         </ul>
     </nav>
+
+    <iframe src="chatbot.html" class="popup-iframe"></iframe>
+    
     <div class="container">
         <div class="sidebar">
             <div class="profile-pic">
@@ -66,10 +90,14 @@
         <div class="main-content">
             <div class="profile-section">
                 <div class="profile-header">
-                    <h1>Juan Dela Cruz</h1>
-                    <p>ID: 0000-001</p>
-                    <p>Role</p>
-                    <p>Personal Statement</p>
+                    <h1 id="profile-name">Juan Dela Cruz</h1>
+                    <p id="profile-id">ID: 0000-001</p>
+                    <p id="profile-role">Role</p>
+                    <p id="profile-statement">Personal Statement</p>
+                </div>
+                <div class="edit-buttons" id="edit-buttons-profile" style="display: none;">
+                    <button class="btn" id="save-btn-profile">Save</button>
+                    <button class="btn" id="cancel-btn-profile">Cancel</button>
                 </div>
             </div>
             <div class="history-section">
@@ -190,10 +218,10 @@
                 <div class="about-us-section">
                     <h3>About Us</h3>
                     <ul>
-                        <li><a href="../public/Mission_Vision_Purpose.html">Mission, Vision, & Purpose</a></li>
-                        <li><a href="../public/Our_Journey.html">Journey</a></li>
-                        <li><a href="../public/Founders.html">Founders</a></li>
-                        <li><a href="../public/TermsAndConditions.html">Terms and Conditions</a></li>
+                        <li><a href="Mission_Vision_Purpose.html">Mission, Vision, & Purpose</a></li>
+                        <li><a href="Our_Journey.html">Journey</a></li>
+                        <li><a href="Founders.html">Founders</a></li>
+                        <li><a href="TermsAndConditions.html">Terms and Conditions</a></li>
                     </ul>
                 </div>
                 <div class="contact-section">
@@ -216,5 +244,6 @@
     </footer>
     
     <script src="js/My_Account.js"></script>
+    <script src="js/donate-popup.js"></script>
 </body>
 </html>

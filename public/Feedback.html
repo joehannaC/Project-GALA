@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Gala</title>
+    <link rel="stylesheet" href="css/LOGIN-OUT.css">
     <link rel="stylesheet" href="css/Feedback.css">
+    <link rel="stylesheet" href="css/donate-popup.css">
+    <link rel="stylesheet" href="css/iframe.css">
 </head>
 <body>
     <header>
         <a href="home-default.html">
             <img src="images/gala-logo.png" alt="Project GALA Logo" class="logo">
         </a>
-        <button class="donate-button">DONATE NOW</button>
+        <button class="donate-button" onclick="showDonateModal()">DONATE NOW</button>
     </header>
+
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDonateModal()">&times;</span>
+            <h2>Select Donation Method</h2>
+            <div class="modal-buttons">
+                <div class="donation-option" onclick="showImage('bank')">
+                    <img src="images/Donation/Bank.png" alt="Bank Image" class="donation-image">
+                    <div class="modal-label">Bank</div>
+                </div>
+                <div class="donation-option" onclick="showImage('gcash')">
+                    <img src="images/Donation/G-Cash.png" alt="Gcash Image" class="donation-image">
+                    <div class="modal-label">Gcash</div>
+                </div>
+            </div>
+            <img id="donationImage" src="" alt="Donation Image" style="display: none; margin-top: 20px; width: 100%;">
+        </div>
+    </div>
 
     <nav>
         <ul>
@@ -44,16 +65,14 @@
             <li class="dropdown">
                 <a href="Feedback.html" data-arrow> FEEDBACK</a>
             </li>  
-            <li class="dropdown logout">
-                <a href="#logout" data-arrow>MY ACCOUNT</a>
-                <div class="dropdown-content logout-dropdown">
-                    <a href="My_Account.html">ACCOUNT SETTINGS</a>
-                    <a href="home-default.html">LOGOUT</a>
-                </div>
+            <li id="account-link" class="dropdown">
+                <!-- Placeholder content to be replaced by JavaScript -->
             </li>
         </ul>
     </nav>
 
+    <iframe src="chatbot.html" class="popup-iframe"></iframe>
+    
     <div class="background-container">
         <div class="main-container">
             <div class="testimonials">
@@ -191,5 +210,6 @@
     </footer>
     
     <script src="js/Feedback.js"></script>
+    <script src="js/donate-popup.js"></script>
 </body>
 </html>
